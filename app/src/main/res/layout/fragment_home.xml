@@ -1,89 +1,88 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".ui.view.HomeFragment">
+    android:layout_height="match_parent">
 
-    <View
-        android:id="@+id/view"
-        android:layout_width="match_parent"
-        android:layout_height="230dp"
-        android:background="@color/light_black"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        />
-
-    <TextView
-        android:id="@+id/locationText"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:layout_marginStart="35dp"
-        android:textSize="17sp"
-        android:textStyle="bold"
-        android:text="Location"
-        android:textColor="@color/gray"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        />
+        tools:context=".ui.view.HomeFragment">
 
-    <TextView
-        android:id="@+id/userLocation"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="35dp"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        android:text="Baku, Azerbaijan"
-        android:textColor="@color/dark_white"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/locationText"
-        />
+        <View
+            android:id="@+id/view"
+            android:layout_width="match_parent"
+            android:layout_height="230dp"
+            android:background="@color/light_black"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <android.widget.SearchView
-        android:id="@+id/searchBar"
-        android:layout_width="match_parent"
-        android:layout_height="55dp"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="35dp"
-        android:layout_marginEnd="30dp"
-        android:layout_marginBottom="10dp"
-        android:background="@drawable/custom_search"
-        android:drawableStart="@drawable/search_icon"
-        android:iconifiedByDefault="false"
-        android:outlineAmbientShadowColor="#F4F4F4"
-        android:outlineSpotShadowColor="#E1E1E1"
-        android:padding="5dp"
-        android:queryBackground="@android:color/transparent"
-        android:textColorHint="@color/dark_white"
-        android:textSize="18sp"
-        app:layout_constraintTop_toBottomOf="@+id/userLocation"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        />
+        <TextView
+            android:id="@+id/locationText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="35dp"
+            android:layout_marginTop="20dp"
+            android:text="Location"
+            android:textColor="@color/gray"
+            android:textSize="17sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/categoriesRecyclerView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/view"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        />
+        <TextView
+            android:id="@+id/userLocation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="35dp"
+            android:text="Baku, Azerbaijan"
+            android:textColor="@color/dark_white"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/locationText" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/coffeesRecyclerView"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_marginTop="10dp"
-        app:layout_constraintTop_toBottomOf="@id/categoriesRecyclerView"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        />
+        <android.widget.SearchView
+            android:id="@+id/searchBar"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="35dp"
+            android:layout_marginEnd="30dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/custom_search"
+            android:drawableStart="@drawable/search_icon"
+            android:iconifiedByDefault="false"
+            android:outlineAmbientShadowColor="#F4F4F4"
+            android:outlineSpotShadowColor="#E1E1E1"
+            android:padding="5dp"
+            android:queryBackground="@android:color/transparent"
+            android:textColorHint="@color/dark_white"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/userLocation" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/categoriesRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/view" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/coffeesRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/categoriesRecyclerView" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
