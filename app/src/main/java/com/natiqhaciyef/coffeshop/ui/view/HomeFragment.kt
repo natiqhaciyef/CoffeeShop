@@ -1,6 +1,8 @@
 package com.natiqhaciyef.coffeshop.ui.view
 
+import android.os.Build
 import android.os.Bundle
+import android.text.Html
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -22,15 +24,20 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            binding.searchBar.queryHint =
+                Html.fromHtml(getString(R.string.search_view_hint), Html.FROM_HTML_MODE_COMPACT)
+        } else {
+            binding.searchBar.queryHint = Html.fromHtml(getString(R.string.search_view_hint))
+        }
+
         binding.searchBar.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 return false
             }
 
             override fun onQueryTextChange(newText: String?): Boolean {
-                newText?.let {
-//                    filterByName(newText)
-                }
+                newText?.let { }
                 return false
             }
         })

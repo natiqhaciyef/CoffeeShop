@@ -7,8 +7,9 @@
     tools:context=".ui.view.HomeFragment">
 
     <View
+        android:id="@+id/view"
         android:layout_width="match_parent"
-        android:layout_height="250dp"
+        android:layout_height="230dp"
         android:background="@color/light_black"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -57,8 +58,7 @@
         android:iconifiedByDefault="false"
         android:outlineAmbientShadowColor="#F4F4F4"
         android:outlineSpotShadowColor="#E1E1E1"
-        android:padding="7dp"
-        android:queryHint=" Search coffee"
+        android:padding="5dp"
         android:queryBackground="@android:color/transparent"
         android:textColorHint="@color/dark_white"
         android:textSize="18sp"
@@ -66,4 +66,24 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/categoriesRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/view"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/coffeesRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="10dp"
+        app:layout_constraintTop_toBottomOf="@id/categoriesRecyclerView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
