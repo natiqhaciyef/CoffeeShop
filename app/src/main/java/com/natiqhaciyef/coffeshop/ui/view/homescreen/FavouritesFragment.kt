@@ -1,4 +1,4 @@
-package com.natiqhaciyef.coffeshop.ui.view
+package com.natiqhaciyef.coffeshop.ui.view.homescreen
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

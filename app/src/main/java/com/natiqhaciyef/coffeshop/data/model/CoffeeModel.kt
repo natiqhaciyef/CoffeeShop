@@ -6,5 +6,6 @@ data class CoffeeModel(
     var image:String,
     var price: Double,
     var size: String,
-    var rating: Double
+    var rating: Double,
+    var category: String
 )

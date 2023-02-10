@@ -1,4 +1,4 @@
-package com.natiqhaciyef.coffeshop.ui.view
+package com.natiqhaciyef.coffeshop.ui.view.homescreen
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
