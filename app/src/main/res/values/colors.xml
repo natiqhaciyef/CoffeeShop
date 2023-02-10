@@ -45,4 +45,7 @@
 
     <color name="black">#000000</color>
     <color name="white">#FFFFFF</color>
+
+    <color name="background">#f9f9f9</color>
+
 </resources>
