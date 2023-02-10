@@ -49,6 +49,14 @@ class HomeFragment : Fragment() {
             price = 4.35,
             size = "Small",
             rating = 4.1
+        ),
+        CoffeeModel(
+            id = 0,
+            name = "Latte",
+            image = "https://github.com/natiqhaciyef/CoffeeShop/blob/master/Coffee%20Images/latte.jpg?raw=true",
+            price = 3.75,
+            size = "Small",
+            rating = 4.6
         )
     )
 

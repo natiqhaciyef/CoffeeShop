@@ -1,13 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="180dp"
+    android:layout_width="wrap_content"
     android:layout_height="270dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_marginStart="8dp"
-    android:layout_marginTop="10dp"
-    android:layout_marginEnd="2dp"
-    android:layout_marginBottom="5dp"
+    android:layout_margin="5dp"
     app:cardCornerRadius="10dp"
     >
 
@@ -17,8 +14,8 @@
 
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/coffeeImage"
-            android:layout_width="180dp"
-            android:layout_height="180dp"
+            android:layout_width="185dp"
+            android:layout_height="185dp"
             android:src="@drawable/cappuccino"
             android:scaleType="centerCrop"
             app:layout_constraintTop_toTopOf="parent"
