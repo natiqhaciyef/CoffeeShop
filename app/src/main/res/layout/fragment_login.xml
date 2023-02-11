@@ -1,14 +1,188 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.view.register.LoginFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/loginCoffeeAnimation2"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_marginTop="10dp"
+        android:layout_height="350dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"
+        app:lottie_rawRes="@raw/buy_me_coffee_anim"
+         />
 
-</FrameLayout>
+    <View
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:background="@drawable/circle_background"
+        app:cardCornerRadius="30dp"
+        app:layout_constraintTop_toTopOf="@id/loginCoffeeAnimation2"
+        app:layout_constraintBottom_toBottomOf="@id/loginCoffeeAnimation2"
+        app:layout_constraintStart_toStartOf="@id/loginCoffeeAnimation2"
+        app:layout_constraintEnd_toEndOf="@id/loginCoffeeAnimation2"
+        />
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/loginCoffeeAnimation"
+        android:layout_width="match_parent"
+        android:layout_height="230dp"
+        android:layout_marginTop="45dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"
+        app:lottie_rawRes="@raw/hot_coffee_animation" />
+
+
+    <View
+        android:id="@+id/view"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/custom_card_background"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/loginCoffeeAnimation2" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/emailTextInputLayoutLogin"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginEnd="20dp"
+        app:boxCornerRadiusBottomEnd="8dp"
+        app:boxCornerRadiusBottomStart="8dp"
+        app:boxCornerRadiusTopEnd="8dp"
+        app:boxCornerRadiusTopStart="8dp"
+        app:boxStrokeColor="@color/black"
+        app:boxStrokeWidth="0dp"
+        app:boxStrokeWidthFocused="0dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/view">
+
+        <EditText
+            android:id="@+id/emailTextInputRegister"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:background="@drawable/custom_input_panel_background"
+            android:hint="Enter email address"
+            android:importantForAutofill="no"
+            android:inputType="textEmailAddress"
+            android:paddingStart="20dp"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            tools:ignore="SpeakableTextPresentCheck" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/passwordTextInputLayoutLogin"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="20dp"
+        app:boxCornerRadiusBottomEnd="8dp"
+        app:boxCornerRadiusBottomStart="8dp"
+        app:boxCornerRadiusTopEnd="8dp"
+        app:boxCornerRadiusTopStart="8dp"
+        app:boxStrokeColor="@color/black"
+        app:boxStrokeWidth="0dp"
+        app:boxStrokeWidthFocused="0dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/emailTextInputLayoutLogin">
+
+        <EditText
+            android:id="@+id/passwordTextInputLogin"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:background="@drawable/custom_input_panel_background"
+            android:hint="Enter password"
+            android:importantForAutofill="no"
+            android:inputType="textPassword"
+            android:paddingStart="20dp"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            tools:ignore="SpeakableTextPresentCheck" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <ImageView
+        android:id="@+id/passwordVisibile"
+        android:layout_width="27dp"
+        android:layout_height="27dp"
+        android:src="@drawable/visibility_icon"
+        android:visibility="gone"
+        android:layout_marginEnd="20dp"
+        app:layout_constraintTop_toTopOf="@id/passwordTextInputLayoutLogin"
+        app:layout_constraintEnd_toEndOf="@id/passwordTextInputLayoutLogin"
+        app:layout_constraintBottom_toBottomOf="@id/passwordTextInputLayoutLogin"
+        />
+
+    <ImageView
+        android:id="@+id/passwordVisibileOff"
+        android:layout_width="27dp"
+        android:layout_height="27dp"
+        android:src="@drawable/visibility_off_icon"
+        android:layout_marginEnd="20dp"
+        app:layout_constraintTop_toTopOf="@id/passwordTextInputLayoutLogin"
+        app:layout_constraintEnd_toEndOf="@id/passwordTextInputLayoutLogin"
+        app:layout_constraintBottom_toBottomOf="@id/passwordTextInputLayoutLogin"
+        />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/loginButton"
+        android:layout_width="200dp"
+        android:layout_height="55dp"
+        android:layout_marginTop="40dp"
+        android:background="@drawable/custom_button_background"
+        android:text="Login"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="17sp"
+        app:layout_constraintEnd_toEndOf="@id/passwordTextInputLayoutLogin"
+        app:layout_constraintStart_toStartOf="@id/passwordTextInputLayoutLogin"
+        app:layout_constraintTop_toBottomOf="@id/goToForgotPassword"
+         />
+
+    <TextView
+        android:id="@+id/goToRegister"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="@string/go_to_register_text"
+        android:textAlignment="center"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/loginButton"
+        />
+
+    <TextView
+        android:id="@+id/goToForgotPassword"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="@string/go_to_forgot_password_text"
+        android:textAlignment="textEnd"
+        android:textColor="@color/white"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        android:paddingEnd="5dp"
+        app:layout_constraintStart_toStartOf="@id/passwordTextInputLayoutLogin"
+        app:layout_constraintEnd_toEndOf="@id/passwordTextInputLayoutLogin"
+        app:layout_constraintTop_toBottomOf="@id/passwordTextInputLayoutLogin"
+        />
+</androidx.constraintlayout.widget.ConstraintLayout>

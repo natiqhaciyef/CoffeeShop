@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.Navigation
 import com.natiqhaciyef.coffeshop.R
 import com.natiqhaciyef.coffeshop.databinding.FragmentRegisterBinding
 
@@ -27,6 +28,9 @@ class RegisterFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setup()
+        binding.goToLogin.setOnClickListener {
+            Navigation.findNavController(it).navigate(R.id.loginFragment)
+        }
     }
 
     private fun setup(){

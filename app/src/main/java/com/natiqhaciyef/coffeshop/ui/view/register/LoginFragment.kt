@@ -1,6 +1,10 @@
 package com.natiqhaciyef.coffeshop.ui.view.register
 
+import android.os.Build
 import android.os.Bundle
+import android.text.Html
+import android.text.method.HideReturnsTransformationMethod
+import android.text.method.PasswordTransformationMethod
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -21,6 +25,27 @@ class LoginFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setup()
+    }
 
+    fun setup(){
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            binding.goToRegister.text =
+                Html.fromHtml(getString(R.string.go_to_register_text), Html.FROM_HTML_MODE_COMPACT)
+        } else {
+            binding.goToRegister.text = Html.fromHtml(getString(R.string.go_to_register_text))
+        }
+
+        binding.passwordVisibile.setOnClickListener {
+            binding.passwordTextInputLogin.transformationMethod = PasswordTransformationMethod.getInstance()
+            binding.passwordVisibile.visibility = View.GONE
+            binding.passwordVisibileOff.visibility = View.VISIBLE
+        }
+
+        binding.passwordVisibileOff.setOnClickListener {
+            binding.passwordTextInputLogin.transformationMethod = HideReturnsTransformationMethod.getInstance()
+            binding.passwordVisibile.visibility = View.VISIBLE
+            binding.passwordVisibileOff.visibility = View.GONE
+        }
     }
 }
