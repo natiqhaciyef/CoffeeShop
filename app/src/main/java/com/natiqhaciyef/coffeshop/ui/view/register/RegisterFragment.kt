@@ -38,6 +38,8 @@ class RegisterFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         setup()
         auth = Firebase.auth
+        if (auth.currentUser != null)
+            goToHome()
 
         binding.goToLogin.setOnClickListener {
             Navigation.findNavController(it).navigate(R.id.loginFragment)
