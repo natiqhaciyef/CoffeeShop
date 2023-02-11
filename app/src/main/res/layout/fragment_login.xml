@@ -73,11 +73,11 @@
         app:layout_constraintTop_toTopOf="@+id/view">
 
         <EditText
-            android:id="@+id/emailTextInputRegister"
+            android:id="@+id/emailTextInputLogin"
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:background="@drawable/custom_input_panel_background"
-            android:hint="Enter email address"
+            android:hint="@string/enter_email_address_text"
             android:importantForAutofill="no"
             android:inputType="textEmailAddress"
             android:paddingStart="20dp"
@@ -109,7 +109,7 @@
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:background="@drawable/custom_input_panel_background"
-            android:hint="Enter password"
+            android:hint="@string/enter_password_text"
             android:importantForAutofill="no"
             android:inputType="textPassword"
             android:paddingStart="20dp"
@@ -147,7 +147,7 @@
         android:layout_height="55dp"
         android:layout_marginTop="40dp"
         android:background="@drawable/custom_button_background"
-        android:text="Login"
+        android:text="@string/login_text"
         android:textAllCaps="false"
         android:textColor="@color/white"
         android:textSize="17sp"
@@ -185,4 +185,5 @@
         app:layout_constraintEnd_toEndOf="@id/passwordTextInputLayoutLogin"
         app:layout_constraintTop_toBottomOf="@id/passwordTextInputLayoutLogin"
         />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

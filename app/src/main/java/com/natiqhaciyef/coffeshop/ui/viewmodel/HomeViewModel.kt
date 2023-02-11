@@ -33,7 +33,7 @@ class HomeViewModel : ViewModel() {
                         val docs = value.documents
                         posts.clear()
                         for (doc in docs){
-                            val id = doc.get("id") as Int
+                            val id = doc.get("id").toString().toInt()
                             val name = doc.get("name") as String
                             val image = doc.get("image") as String
                             val price = doc.get("price") as Double

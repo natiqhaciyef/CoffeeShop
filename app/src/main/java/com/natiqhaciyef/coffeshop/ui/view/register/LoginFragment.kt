@@ -1,5 +1,6 @@
 package com.natiqhaciyef.coffeshop.ui.view.register
 
+import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.text.Html
@@ -9,12 +10,21 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.Navigation
+import com.google.android.material.snackbar.Snackbar
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
+import com.google.firebase.ktx.app
 import com.natiqhaciyef.coffeshop.R
 import com.natiqhaciyef.coffeshop.databinding.FragmentLoginBinding
+import com.natiqhaciyef.coffeshop.ui.MainActivity
+import java.io.IOException
 
 
 class LoginFragment : Fragment() {
     private lateinit var binding: FragmentLoginBinding
+    private lateinit var auth: FirebaseAuth
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -26,6 +36,38 @@ class LoginFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setup()
+        auth = Firebase.auth
+
+        binding.loginButton.setOnClickListener {
+            val email = binding.emailTextInputLogin.text.toString()
+            val password = binding.passwordTextInputLogin.text.toString()
+            if (email.isNotEmpty() && password.isNotEmpty())
+                login(email, password)
+        }
+
+        binding.goToRegister.setOnClickListener {
+            Navigation.findNavController(it).navigate(R.id.registerFragment)
+        }
+
+        binding.goToForgotPassword.setOnClickListener {
+            Navigation.findNavController(it).navigate(R.id.forgotPasswordFragment)
+        }
+    }
+
+
+    fun login(email: String, password: String){
+        auth.signInWithEmailAndPassword(email, password).addOnSuccessListener {
+            goToHome()
+        }.addOnFailureListener {
+            Snackbar.make(requireView(), "Authentication failed. Fail message: ${it.message}", Snackbar.LENGTH_LONG)
+                .show()
+        }
+    }
+
+    private fun goToHome(){
+        val intent = Intent(requireActivity(), MainActivity::class.java)
+        requireActivity().startActivity(intent)
+        requireActivity().finish()
     }
 
     fun setup(){

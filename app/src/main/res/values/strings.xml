@@ -8,5 +8,13 @@
     <string name="go_to_login_text"><![CDATA[<font color=#f9f9f9>You have an account ? </font><font color=#FFC49E>Sign in</font>]]></string>
     <string name="go_to_register_text"><![CDATA[<font color=#f9f9f9>Create an account ? </font><font color=#FFC49E>Sign up</font>]]></string>
     <string name="go_to_forgot_password_text">Forgot Password ?</string>
+    <string name="send_text">Send</string>
+    <string name="check_message">Please check your email, we will send the reset password link. If it is not show, check spam messages box</string>
+    <string name="enter_email_address_text">Enter email address</string>
+    <string name="enter_password_text">Enter password</string>
+    <string name="enter_username_text">Enter username</string>
+    <string name="register_text">Register</string>
+    <string name="login_text">Login</string>
+
 
 </resources>
