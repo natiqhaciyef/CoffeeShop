@@ -3,6 +3,7 @@ package com.natiqhaciyef.coffeshop.ui.view.homescreen
 import android.os.Build
 import android.os.Bundle
 import android.text.Html
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -13,10 +14,12 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.natiqhaciyef.coffeshop.R
 import com.natiqhaciyef.coffeshop.data.model.Categories
+import com.natiqhaciyef.coffeshop.data.model.CategoryModel
 import com.natiqhaciyef.coffeshop.data.model.CoffeeModel
 import com.natiqhaciyef.coffeshop.databinding.FragmentHomeBinding
 import com.natiqhaciyef.coffeshop.ui.adapter.CategoryAdapter
 import com.natiqhaciyef.coffeshop.ui.adapter.CoffeeAdapter
+import com.natiqhaciyef.coffeshop.ui.adapter.behavior.CategoryClickListener
 import com.natiqhaciyef.coffeshop.ui.viewmodel.HomeViewModel
 
 
@@ -39,6 +42,7 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setup()
+        setupCategories()
         observeLiveData()
 
         binding.searchBar.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
@@ -53,12 +57,24 @@ class HomeFragment : Fragment() {
         })
     }
 
-    private fun setup() {
+    private fun setupCategories() {
         categoryAdapter = CategoryAdapter(requireContext(), categories)
         binding.categoriesRecyclerView.adapter = categoryAdapter
         binding.categoriesRecyclerView.layoutManager =
             LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
 
+        categoryAdapter.onClick(object: CategoryClickListener{
+            override fun setOnCategorySelected(category: CategoryModel) {
+                for (element in Categories.list){
+                    element.isChecked = element.name == category.name
+                }
+//                categoryAdapter.list = Categories.list
+                setupCategories()
+            }
+        })
+    }
+
+    fun setup(){
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
             binding.searchBar.queryHint =
                 Html.fromHtml(getString(R.string.search_view_hint), Html.FROM_HTML_MODE_COMPACT)

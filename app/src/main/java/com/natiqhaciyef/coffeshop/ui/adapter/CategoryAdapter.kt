@@ -1,9 +1,9 @@
 package com.natiqhaciyef.coffeshop.ui.adapter
 
 import android.content.Context
-import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.natiqhaciyef.coffeshop.R
 import com.natiqhaciyef.coffeshop.data.model.CategoryModel
@@ -12,7 +12,7 @@ import com.natiqhaciyef.coffeshop.ui.adapter.behavior.CategoryClickListener
 
 class CategoryAdapter(
     val mContext: Context,
-    val list: List<CategoryModel>
+    var list: List<CategoryModel>
 ) : RecyclerView.Adapter<CategoryAdapter.CategoryHolder>() {
 
     var listener: CategoryClickListener? = null
@@ -31,17 +31,20 @@ class CategoryAdapter(
         val category = list[position]
         view.categoryNameText.text = category.name
 
+        selected(category, view)
+        holder.itemView.setOnClickListener {
+            listener?.setOnCategorySelected(category)
+            selected(category, view)
+        }
+    }
+
+    fun selected(category: CategoryModel, view: RecyclerCategoryRowBinding){
         if (category.isChecked){
             view.constraintViewCategory.setBackgroundColor(mContext.getColor(R.color.brown))
             view.categoryNameText.setTextColor(mContext.getColor(R.color.white))
-        }
-
-        holder.itemView.setOnClickListener {
-            for (element in list){
-                if (element.name != category.name)
-                    element.isChecked = false
-            }
-            listener?.setOnCategorySelected(category)
+        }else{
+            view.constraintViewCategory.setBackgroundColor(mContext.getColor(R.color.white))
+            view.categoryNameText.setTextColor(mContext.getColor(R.color.dark_cool_green))
         }
     }
 
@@ -50,4 +53,5 @@ class CategoryAdapter(
     }
 
     override fun getItemCount(): Int = list.size
+
 }
