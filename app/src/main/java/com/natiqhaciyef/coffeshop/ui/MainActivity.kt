@@ -6,6 +6,7 @@ import androidx.navigation.findNavController
 import com.natiqhaciyef.coffeshop.R
 import com.natiqhaciyef.coffeshop.databinding.ActivityMainBinding
 
+
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     override fun onCreate(savedInstanceState: Bundle?) {

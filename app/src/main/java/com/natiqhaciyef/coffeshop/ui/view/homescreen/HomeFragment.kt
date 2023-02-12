@@ -23,6 +23,7 @@ import com.natiqhaciyef.coffeshop.ui.adapter.CoffeeAdapter
 import com.natiqhaciyef.coffeshop.ui.adapter.behavior.CategoryClickListener
 import com.natiqhaciyef.coffeshop.ui.adapter.behavior.CoffeeAdapterClickListener
 import com.natiqhaciyef.coffeshop.ui.viewmodel.HomeViewModel
+import kotlinx.android.synthetic.main.fragment_home.view.*
 
 
 class HomeFragment : Fragment() {
@@ -66,9 +67,9 @@ class HomeFragment : Fragment() {
         binding.categoriesRecyclerView.layoutManager =
             LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
 
-        categoryAdapter.onClick(object: CategoryClickListener{
+        categoryAdapter.onClick(object : CategoryClickListener {
             override fun setOnCategorySelected(category: CategoryModel) {
-                for (element in Categories.list){
+                for (element in Categories.list) {
                     element.isChecked = element.name == category.name
                 }
                 setupCategories()
@@ -76,7 +77,7 @@ class HomeFragment : Fragment() {
         })
     }
 
-    fun setup(){
+    fun setup() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
             binding.searchBar.queryHint =
                 Html.fromHtml(getString(R.string.search_view_hint), Html.FROM_HTML_MODE_COMPACT)
@@ -86,6 +87,13 @@ class HomeFragment : Fragment() {
     }
 
     private fun observeLiveData() {
+        viewModel.isLoading.observe(viewLifecycleOwner){
+            if (it == true)
+                binding.loadingView.visibility = View.VISIBLE
+            else
+                binding.loadingView.visibility = View.GONE
+        }
+
         viewModel.coffeeLiveData.observe(viewLifecycleOwner) {
             it.data?.let {
                 coffeeList = it.toMutableList()
@@ -98,8 +106,8 @@ class HomeFragment : Fragment() {
         }
     }
 
-    private fun goToDetails(){
-        coffeeAdapter.onClick(object: CoffeeAdapterClickListener{
+    private fun goToDetails() {
+        coffeeAdapter.onClick(object : CoffeeAdapterClickListener {
             override fun setOnClickListener(coffeeModel: CoffeeModel) {
                 val action = HomeFragmentDirections.actionHomeFragmentToDetailsFragment(coffeeModel)
                 findNavController().navigate(action)

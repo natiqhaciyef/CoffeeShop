@@ -43,6 +43,7 @@
     <color name="dark_cool_green">#2f4b4e</color>
     <color name="brown">#c67c4e</color>
     <color name="light_brown">#FFC49E</color>
+    <color name="light_brown2">#d3b8ae</color>
     <color name="extra_light_brown">#fff4ee</color>
     <color name="dark_white">#D5D5D5</color>
 
@@ -50,5 +51,6 @@
     <color name="white">#FFFFFF</color>
 
     <color name="background">#f9f9f9</color>
+
 
 </resources>

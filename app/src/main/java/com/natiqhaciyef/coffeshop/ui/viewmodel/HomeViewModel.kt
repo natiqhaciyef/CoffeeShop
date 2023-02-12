@@ -13,7 +13,7 @@ import kotlinx.coroutines.launch
 
 class HomeViewModel : ViewModel() {
     val coffeeLiveData = MutableLiveData<Resource<List<CoffeeModel>>>()
-    val isLoading = MutableLiveData<Boolean>(false)
+    val isLoading = MutableLiveData(false)
 
     init {
         getDataFromFirebase()

@@ -3,10 +3,14 @@ package com.natiqhaciyef.coffeshop.util
 import android.content.Context
 import android.widget.ImageView
 import androidx.swiperefreshlayout.widget.CircularProgressDrawable
+import com.airbnb.lottie.LottieAnimationView
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.GlideException
 import com.bumptech.glide.load.resource.bitmap.Rotate
+import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.RequestOptions
 import com.natiqhaciyef.coffeshop.R
+import android.graphics.drawable.Drawable as Drawable1
 
 
 fun ImageView.downloadFromUrl(url: String?, circularProgressDrawable: CircularProgressDrawable){
@@ -39,5 +43,3 @@ fun placeHolder(context: Context): CircularProgressDrawable {
         start()
     }
 }
-
-

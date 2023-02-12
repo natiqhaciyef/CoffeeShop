@@ -10,6 +10,16 @@
         android:layout_height="match_parent"
         tools:context=".ui.view.homescreen.DetailsFragment">
 
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            android:background="@drawable/custom_details_background"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            />
+
+
         <ImageView
             android:id="@+id/goBack"
             android:layout_width="30dp"
@@ -36,7 +46,7 @@
             android:layout_width="match_parent"
             android:layout_height="270dp"
             android:layout_marginHorizontal="50dp"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="20dp"
             android:scaleType="centerCrop"
             android:src="@drawable/cappuccino"
             app:layout_constraintEnd_toEndOf="parent"
@@ -49,7 +59,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="25dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="25dp"
             android:fontFamily="@font/courgette"
             android:text="Cappuccino"
             android:textColor="@color/black"
@@ -218,7 +228,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintHorizontal_bias="0.1"
+            app:layout_constraintHorizontal_bias="0.08"
             app:layout_constraintTop_toBottomOf="@id/countText"
             app:layout_constraintVertical_bias="0.85" />
 

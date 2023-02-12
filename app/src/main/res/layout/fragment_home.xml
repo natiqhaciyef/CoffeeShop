@@ -12,6 +12,7 @@
         android:background="@color/background"
         tools:context=".ui.view.homescreen.HomeFragment">
 
+
         <View
             android:id="@+id/view"
             android:layout_width="match_parent"
@@ -85,6 +86,21 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/categoriesRecyclerView" />
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/loadingView"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:layout_marginTop="200dp"
+            android:foregroundGravity="center"
+            android:visibility="visible"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/view"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"
+            app:lottie_rawRes="@raw/loading_coffee_beans_animation" />
+
 
         <ImageView
             android:id="@+id/locationIcon"
