@@ -1,5 +1,7 @@
 package com.natiqhaciyef.coffeshop.data.model
 
+import java.io.Serializable
+
 data class CoffeeModel(
     var id: Int,
     var name: String,
@@ -9,4 +11,4 @@ data class CoffeeModel(
     var size: String,
     var rating: Double,
     var category: String
-)
+): Serializable

@@ -10,6 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.SearchView
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.natiqhaciyef.coffeshop.R
@@ -20,6 +21,7 @@ import com.natiqhaciyef.coffeshop.databinding.FragmentHomeBinding
 import com.natiqhaciyef.coffeshop.ui.adapter.CategoryAdapter
 import com.natiqhaciyef.coffeshop.ui.adapter.CoffeeAdapter
 import com.natiqhaciyef.coffeshop.ui.adapter.behavior.CategoryClickListener
+import com.natiqhaciyef.coffeshop.ui.adapter.behavior.CoffeeAdapterClickListener
 import com.natiqhaciyef.coffeshop.ui.viewmodel.HomeViewModel
 
 
@@ -55,6 +57,7 @@ class HomeFragment : Fragment() {
                 return false
             }
         })
+
     }
 
     private fun setupCategories() {
@@ -90,7 +93,17 @@ class HomeFragment : Fragment() {
                 binding.coffeesRecyclerView.adapter = coffeeAdapter
                 binding.coffeesRecyclerView.layoutManager =
                     StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
+                goToDetails()
             }
         }
+    }
+
+    private fun goToDetails(){
+        coffeeAdapter.onClick(object: CoffeeAdapterClickListener{
+            override fun setOnClickListener(coffeeModel: CoffeeModel) {
+                val action = HomeFragmentDirections.actionHomeFragmentToDetailsFragment(coffeeModel)
+                findNavController().navigate(action)
+            }
+        })
     }
 }

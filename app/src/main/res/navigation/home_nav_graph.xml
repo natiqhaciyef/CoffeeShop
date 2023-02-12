@@ -9,7 +9,11 @@
         android:id="@+id/homeFragment"
         android:name="com.natiqhaciyef.coffeshop.ui.view.homescreen.HomeFragment"
         android:label="fragment_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_homeFragment_to_detailsFragment"
+            app:destination="@id/detailsFragment" />
+    </fragment>
     <fragment
         android:id="@+id/cartFragment"
         android:name="com.natiqhaciyef.coffeshop.ui.view.homescreen.CartFragment"
@@ -25,4 +29,12 @@
         android:name="com.natiqhaciyef.coffeshop.ui.view.homescreen.NotificationFragment"
         android:label="fragment_notification"
         tools:layout="@layout/fragment_notification" />
+    <fragment
+        android:id="@+id/detailsFragment"
+        android:name="com.natiqhaciyef.coffeshop.ui.view.homescreen.DetailsFragment"
+        android:label="DetailsFragment" >
+        <argument
+            android:name="data"
+            app:argType="com.natiqhaciyef.coffeshop.data.model.CoffeeModel" />
+    </fragment>
 </navigation>
