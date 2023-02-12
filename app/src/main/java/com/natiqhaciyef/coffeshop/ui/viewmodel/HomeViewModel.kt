@@ -35,6 +35,7 @@ class HomeViewModel : ViewModel() {
                         for (doc in docs){
                             val id = doc.get("id").toString().toInt()
                             val name = doc.get("name") as String
+                            val detail = doc.get("detail") as String
                             val image = doc.get("image") as String
                             val price = doc.get("price") as Double
                             val size = doc.get("size") as String
@@ -44,6 +45,7 @@ class HomeViewModel : ViewModel() {
                             val coffee = CoffeeModel(
                                 id = id,
                                 name = name,
+                                detail = detail,
                                 image = image,
                                 price = price,
                                 size = size,

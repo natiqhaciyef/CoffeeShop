@@ -25,9 +25,9 @@
             android:id="@+id/locationText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="35dp"
+            android:layout_marginStart="45dp"
             android:layout_marginTop="40dp"
-            android:text="Location"
+            android:text="@string/location_text"
             android:textColor="@color/gray"
             android:textSize="17sp"
             android:textStyle="bold"
@@ -39,7 +39,7 @@
             android:id="@+id/userLocation"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="35dp"
+            android:layout_marginStart="45dp"
             android:text="Baku, Azerbaijan"
             android:textColor="@color/dark_white"
             android:textSize="20sp"
@@ -85,6 +85,17 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/categoriesRecyclerView" />
+
+        <ImageView
+            android:id="@+id/locationIcon"
+            android:layout_width="22dp"
+            android:layout_height="22dp"
+            app:layout_constraintBottom_toBottomOf="@+id/userLocation"
+            app:layout_constraintEnd_toEndOf="@+id/userLocation"
+            app:layout_constraintStart_toStartOf="@+id/userLocation"
+            app:layout_constraintTop_toTopOf="@+id/locationText"
+            app:layout_constraintVertical_bias="0.88"
+            app:srcCompat="@drawable/location_menu_icon" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

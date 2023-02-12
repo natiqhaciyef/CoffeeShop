@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.view.homescreen.DetailsFragment">
+
+        <ImageView
+            android:id="@+id/goBack"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="30dp"
+            android:src="@drawable/return_back_icon"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/addToFavourites"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginEnd="30dp"
+            android:src="@drawable/unfilled_like_icon"
+            app:layout_constraintBottom_toBottomOf="@+id/goBack"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/detailsCoffeeImageView"
+            android:layout_width="match_parent"
+            android:layout_height="270dp"
+            android:layout_marginHorizontal="50dp"
+            android:layout_marginTop="30dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/cappuccino"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearRatingLayout"
+            app:shapeAppearanceOverlay="@style/RoundedAllCornerImage" />
+
+        <TextView
+            android:id="@+id/detailsCoffeeNameText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="25dp"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/courgette"
+            android:text="Cappuccino"
+            android:textColor="@color/black"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/detailsCoffeeImageView" />
+
+
+        <TextView
+            android:id="@+id/detailsCoffeeDetailsText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="25dp"
+            android:layout_marginTop="10dp"
+            android:text="A cappuccino is a relatively strong espresso beverage with a standard ratio of one part espresso to two parts steamed milk and foam. In comparison to a café latte, the perfect cappuccino has a more intense coffee flavor, as well as a creamier mouthfeel due to more presence of air in the milk foam."
+            android:textColor="@color/gray2"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/detailsCoffeeNameText" />
+
+        <TextView
+            android:id="@+id/sizeText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="25dp"
+            android:layout_marginTop="20dp"
+            android:text="Size"
+            android:textColor="@color/black"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/detailsCoffeeDetailsText" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/sizeRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="5dp"
+            app:layout_constraintTop_toBottomOf="@id/sizeText"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            />
+
+        <LinearLayout
+            android:id="@+id/linearRatingLayout"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintStart_toEndOf="@+id/goBack"
+            app:layout_constraintTop_toTopOf="@id/goBack"
+            app:layout_constraintEnd_toStartOf="@id/addToFavourites"
+            app:layout_constraintBottom_toBottomOf="@id/goBack"
+            android:gravity="center"
+            >
+
+            <ImageView
+                android:id="@+id/star1"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:src="@drawable/filled_star_icon"
+                />
+
+            <ImageView
+                android:id="@+id/star2"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:src="@drawable/filled_star_icon"
+                />
+
+            <ImageView
+                android:id="@+id/star3"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:src="@drawable/filled_star_icon"
+                />
+
+            <ImageView
+                android:id="@+id/star4"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:src="@drawable/filled_star_icon"
+                />
+
+            <ImageView
+                android:id="@+id/star5"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:src="@drawable/filled_star_icon"
+                />
+        </LinearLayout>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/addToCartButton"
+            android:layout_width="170dp"
+            android:layout_height="55dp"
+            android:text="@string/add_to_cart_text"
+            android:textAllCaps="false"
+            android:textSize="16sp"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:layout_marginTop="30dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/custom_button_background"
+            app:layout_constraintTop_toBottomOf="@+id/sizeRecyclerView"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

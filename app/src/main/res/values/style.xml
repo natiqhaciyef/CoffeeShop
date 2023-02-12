@@ -8,4 +8,11 @@
         <item name="cornerSizeBottomRight">5%</item>
     </style>
 
+    <style name="RoundedAllCornerImage">
+        <item name="cornerSizeTopRight">5%</item>
+        <item name="cornerSizeTopLeft">5%</item>
+        <item name="cornerSizeBottomLeft">5%</item>
+        <item name="cornerSizeBottomRight">5%</item>
+    </style>
+
 </resources>
