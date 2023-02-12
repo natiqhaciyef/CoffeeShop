@@ -29,7 +29,7 @@ class HomeFragment : Fragment() {
     private val categories = Categories.list
     private lateinit var coffeeAdapter: CoffeeAdapter
     private var coffeeList = mutableListOf<CoffeeModel>()
-    val viewModel: HomeViewModel by viewModels()
+    private val viewModel: HomeViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -68,7 +68,6 @@ class HomeFragment : Fragment() {
                 for (element in Categories.list){
                     element.isChecked = element.name == category.name
                 }
-//                categoryAdapter.list = Categories.list
                 setupCategories()
             }
         })
