@@ -16,8 +16,9 @@ import com.natiqhaciyef.coffeshop.data.model.Sizes
 import com.natiqhaciyef.coffeshop.databinding.FragmentDetailsBinding
 import com.natiqhaciyef.coffeshop.ui.adapter.DetailsSizeAdapter
 import com.natiqhaciyef.coffeshop.ui.adapter.behavior.SizeClickListener
+import dagger.hilt.android.AndroidEntryPoint
 
-
+@AndroidEntryPoint
 class DetailsFragment : Fragment() {
     private lateinit var binding: FragmentDetailsBinding
     private lateinit var sizeAdapter: DetailsSizeAdapter

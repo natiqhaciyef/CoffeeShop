@@ -19,9 +19,10 @@ import com.google.firebase.ktx.app
 import com.natiqhaciyef.coffeshop.R
 import com.natiqhaciyef.coffeshop.databinding.FragmentLoginBinding
 import com.natiqhaciyef.coffeshop.ui.MainActivity
+import dagger.hilt.android.AndroidEntryPoint
 import java.io.IOException
 
-
+@AndroidEntryPoint
 class LoginFragment : Fragment() {
     private lateinit var binding: FragmentLoginBinding
     private lateinit var auth: FirebaseAuth

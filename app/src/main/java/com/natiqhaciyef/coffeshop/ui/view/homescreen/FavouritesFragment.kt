@@ -7,8 +7,9 @@ import android.view.View
 import android.view.ViewGroup
 import com.natiqhaciyef.coffeshop.R
 import com.natiqhaciyef.coffeshop.databinding.FragmentFavouritesBinding
+import dagger.hilt.android.AndroidEntryPoint
 
-
+@AndroidEntryPoint
 class FavouritesFragment : Fragment() {
     private lateinit var binding: FragmentFavouritesBinding
     override fun onCreateView(

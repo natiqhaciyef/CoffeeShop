@@ -23,9 +23,10 @@ import com.natiqhaciyef.coffeshop.ui.adapter.CoffeeAdapter
 import com.natiqhaciyef.coffeshop.ui.adapter.behavior.CategoryClickListener
 import com.natiqhaciyef.coffeshop.ui.adapter.behavior.CoffeeAdapterClickListener
 import com.natiqhaciyef.coffeshop.ui.viewmodel.HomeViewModel
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_home.view.*
 
-
+@AndroidEntryPoint
 class HomeFragment : Fragment() {
     private lateinit var binding: FragmentHomeBinding
     private lateinit var categoryAdapter: CategoryAdapter

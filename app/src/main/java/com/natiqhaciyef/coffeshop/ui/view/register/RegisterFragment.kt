@@ -19,9 +19,10 @@ import com.google.firebase.ktx.Firebase
 import com.natiqhaciyef.coffeshop.R
 import com.natiqhaciyef.coffeshop.databinding.FragmentRegisterBinding
 import com.natiqhaciyef.coffeshop.ui.MainActivity
+import dagger.hilt.android.AndroidEntryPoint
 import java.io.IOException
 
-
+@AndroidEntryPoint
 class RegisterFragment : Fragment() {
     private lateinit var binding: FragmentRegisterBinding
     private lateinit var auth: FirebaseAuth

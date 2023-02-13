@@ -7,8 +7,9 @@ import android.view.View
 import android.view.ViewGroup
 import com.natiqhaciyef.coffeshop.R
 import com.natiqhaciyef.coffeshop.databinding.FragmentNotificationBinding
+import dagger.hilt.android.AndroidEntryPoint
 
-
+@AndroidEntryPoint
 class NotificationFragment : Fragment() {
     private lateinit var binding: FragmentNotificationBinding
     override fun onCreateView(
