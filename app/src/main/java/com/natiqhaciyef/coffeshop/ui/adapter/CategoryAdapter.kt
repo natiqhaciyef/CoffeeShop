@@ -38,7 +38,7 @@ class CategoryAdapter(
         }
     }
 
-    fun selected(category: CategoryModel, view: RecyclerCategoryRowBinding){
+    private fun selected(category: CategoryModel, view: RecyclerCategoryRowBinding){
         if (category.isChecked){
             view.constraintViewCategory.setBackgroundColor(mContext.getColor(R.color.brown))
             view.categoryNameText.setTextColor(mContext.getColor(R.color.white))

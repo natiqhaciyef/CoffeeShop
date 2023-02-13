@@ -2,8 +2,8 @@ package com.natiqhaciyef.coffeshop.data.model
 
 object Sizes {
     val list = mutableListOf(
-        "Small",
-        "Medium",
-        "Large"
+        SizeModel("Small",true),
+        SizeModel("Medium",false),
+        SizeModel("Large",false)
     )
 }
