@@ -1,7 +1,9 @@
 package com.natiqhaciyef.coffeshop.data.model
 
+import androidx.room.Entity
 import java.io.Serializable
 
+@Entity
 data class CoffeeModel(
     var id: Int,
     var name: String,

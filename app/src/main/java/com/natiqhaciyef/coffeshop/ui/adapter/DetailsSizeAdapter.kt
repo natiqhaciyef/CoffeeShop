@@ -37,7 +37,7 @@ class DetailsSizeAdapter(val mContext: Context, val list: List<SizeModel>) :
     private fun selected(size: SizeModel, view: RecyclerSizeRowBinding){
         if (size.isChecked){
             view.sizeConstraint.setBackgroundColor(mContext.getColor(R.color.light_brown))
-            view.sizeText.setTextColor(mContext.getColor(R.color.white))
+            view.sizeText.setTextColor(mContext.getColor(R.color.dark_cool_green))
         }else{
             view.sizeConstraint.setBackgroundColor(mContext.getColor(R.color.white))
             view.sizeText.setTextColor(mContext.getColor(R.color.light_black))
