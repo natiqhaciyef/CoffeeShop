@@ -70,7 +70,7 @@ class DetailsFragment : Fragment() {
             count += 1
             binding.countOfOrders.text = "$count"
             priceCalculation(coffee.price)
-            refleshSize()
+            viewModel.refleshSize()
         }
 
         binding.minusButton.setOnClickListener {
@@ -78,7 +78,7 @@ class DetailsFragment : Fragment() {
                 count -= 1
             binding.countOfOrders.text = "$count"
             priceCalculation(coffee.price)
-            refleshSize()
+            viewModel.refleshSize()
         }
     }
 
@@ -94,12 +94,6 @@ class DetailsFragment : Fragment() {
         setupSizes(countedPrice)
         price = "%.2f".format(countedPrice)
         binding.detailsCoffeePriceText.text = "Total price $price $"
-    }
-
-    private fun refleshSize() {
-        for (element in Sizes.list) {
-            element.isChecked = element.name.lowercase() == "small"
-        }
     }
 
     fun setupSizes(coffeePrice: Double) {
@@ -188,5 +182,4 @@ class DetailsFragment : Fragment() {
             else -> 0
         }
     }
-
 }

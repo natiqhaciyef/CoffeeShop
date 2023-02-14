@@ -15,4 +15,7 @@
         <item name="cornerSizeBottomRight">5%</item>
     </style>
 
+    <style name="SearchViewStyle" parent="Widget.AppCompat.SearchView">
+        <item name="android:editTextColor">@color/white</item>
+    </style>
 </resources>

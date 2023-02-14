@@ -97,4 +97,13 @@ class HomeViewModel @Inject constructor() : ViewModel() {
 
         return customList
     }
+
+    fun filterByName(text: String, coffeeList: List<CoffeeModel>): ArrayList<CoffeeModel> {
+        val filterList = arrayListOf<CoffeeModel>()
+        for (item in coffeeList) {
+            if (item.name.lowercase().contains(text.lowercase()))
+                filterList.add(item)
+        }
+        return filterList
+    }
 }

@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.SearchView
+import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -49,13 +50,16 @@ class HomeFragment : Fragment() {
         observeLiveData()
         requireActivity().bottomNavigationView.visibility = View.VISIBLE
 
+        binding.searchBar
         binding.searchBar.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 return false
             }
 
             override fun onQueryTextChange(newText: String?): Boolean {
-                newText?.let { }
+                newText?.let {
+                    filterByName(it)
+                }
                 return false
             }
         })
@@ -127,5 +131,13 @@ class HomeFragment : Fragment() {
             coffeeAdapter.filter(list)
             binding.emptyText.visibility = View.VISIBLE
         }
+    }
+
+    fun filterByName(input: String){
+        val list = viewModel.filterByName(input, coffeeList)
+        if (list.isNotEmpty()){
+            coffeeAdapter.filter(list)
+        }else
+            Toast.makeText(requireContext(), "Searched drink not found", Toast.LENGTH_SHORT).show()
     }
 }
