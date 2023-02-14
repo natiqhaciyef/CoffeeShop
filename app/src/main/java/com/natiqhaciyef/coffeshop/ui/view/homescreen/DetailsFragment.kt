@@ -28,7 +28,7 @@ class DetailsFragment : Fragment() {
     private var price = ""
     private var countedPrice = 0.0
     private var count = 1
-    private var isLiked = false
+    private var isLiked = true
     private val viewModel: DetailsViewModel by viewModels()
 
     override fun onCreateView(

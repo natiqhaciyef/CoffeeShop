@@ -50,7 +50,7 @@ class HomeFragment : Fragment() {
         observeLiveData()
         requireActivity().bottomNavigationView.visibility = View.VISIBLE
 
-        binding.searchBar
+
         binding.searchBar.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 return false

@@ -22,7 +22,7 @@ class HomeViewModel @Inject constructor() : ViewModel() {
         getDataFromFirebase()
     }
 
-    fun getDataFromFirebase(){
+    private fun getDataFromFirebase(){
         val db = Firebase.firestore
         val posts = ArrayList<CoffeeModel>()
         isLoading.value = true
