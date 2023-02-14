@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
@@ -41,17 +43,6 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity> <!-- https://developers.google.com/maps/documentation/android-sdk/get-api-key -->
-        <meta-data
-            android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyBhXxj8Homn0ZEOGMvOXSfX7GVWIe5-9Mk" />
-        <meta-data
-            android:name="preloaded_fonts"
-            android:resource="@array/preloaded_fonts" />
-
-        <activity
-            android:name=".ui.MapsActivity"
-            android:exported="false"
-            android:label="@string/title_activity_maps"></activity>
     </application>
 
 </manifest>

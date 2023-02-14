@@ -6,6 +6,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import androidx.navigation.Navigation
+import androidx.navigation.Navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
@@ -37,7 +40,7 @@ class FavouritesFragment : Fragment() {
         ItemTouchHelper(swipeCallBack).attachToRecyclerView(binding.favouritesRecyclerView)
     }
 
-    private val swipeCallBack = object: ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT){
+    private val swipeCallBack = object : ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT) {
         override fun onMove(
             recyclerView: RecyclerView,
             viewHolder: RecyclerView.ViewHolder,
@@ -50,6 +53,11 @@ class FavouritesFragment : Fragment() {
             val position = viewHolder.layoutPosition
             val coffeeModel = adapter.list[position]
             viewModel.deleteFavourite(coffeeModel)
+            findNavController().navigate(R.id.favouritesFragment)
+
+            if (list.isEmpty()) {
+                binding.emptyText.visibility = View.VISIBLE
+            }
         }
     }
 
@@ -57,10 +65,13 @@ class FavouritesFragment : Fragment() {
         viewModel.liveFavouritesData.observe(viewLifecycleOwner) {
             it.data?.let {
                 list = it.toMutableList()
-                adapter = FavouriteAdapter(list, requireContext())
-                binding.favouritesRecyclerView.adapter = adapter
-                binding.favouritesRecyclerView.layoutManager =
-                    StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
+                if (list.isNotEmpty()) {
+                    binding.emptyText.visibility = View.GONE
+                    adapter = FavouriteAdapter(list, requireContext())
+                    binding.favouritesRecyclerView.adapter = adapter
+                    binding.favouritesRecyclerView.layoutManager =
+                        StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
+                }
             }
         }
     }

@@ -1,5 +1,6 @@
 package com.natiqhaciyef.coffeshop.ui.view.homescreen
 
+import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.text.Html
@@ -9,6 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.SearchView
 import android.widget.Toast
+import androidx.activity.result.ActivityResultLauncher
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -30,8 +32,8 @@ import kotlinx.android.synthetic.main.activity_main.*
 class HomeFragment : Fragment() {
     private lateinit var binding: FragmentHomeBinding
     private lateinit var categoryAdapter: CategoryAdapter
-    private val categories = Categories.list
     private lateinit var coffeeAdapter: CoffeeAdapter
+    private val categories = Categories.list
     private var coffeeList = mutableListOf<CoffeeModel>()
     private val viewModel: HomeViewModel by viewModels()
 
@@ -49,7 +51,6 @@ class HomeFragment : Fragment() {
         setupCategories()
         observeLiveData()
         requireActivity().bottomNavigationView.visibility = View.VISIBLE
-
 
         binding.searchBar.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
@@ -140,4 +141,7 @@ class HomeFragment : Fragment() {
         }else
             Toast.makeText(requireContext(), "Searched drink not found", Toast.LENGTH_SHORT).show()
     }
+
+
+
 }

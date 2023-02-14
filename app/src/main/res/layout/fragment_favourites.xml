@@ -13,7 +13,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="10dp"
-
         android:fontFamily="@font/sanchez_italic"
         android:text="Favourites"
         android:textColor="@color/black"
@@ -22,6 +21,24 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/emptyText"
+        android:layout_width="wrap_content"
+        android:layout_height="150dp"
+        android:drawableStart="@drawable/coffee_empty_icon"
+        android:foregroundGravity="center"
+        android:gravity="center"
+        android:text="@string/empty_text"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:visibility="visible"
+        app:layout_constraintVertical_bias="0.45"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/favouritesText" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/favouritesRecyclerView"
