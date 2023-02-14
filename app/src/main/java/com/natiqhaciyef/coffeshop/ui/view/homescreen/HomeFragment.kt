@@ -3,7 +3,6 @@ package com.natiqhaciyef.coffeshop.ui.view.homescreen
 import android.os.Build
 import android.os.Bundle
 import android.text.Html
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -14,7 +13,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.natiqhaciyef.coffeshop.R
-import com.natiqhaciyef.coffeshop.data.model.Categories
+import com.natiqhaciyef.coffeshop.data.based_datas.Categories
 import com.natiqhaciyef.coffeshop.data.model.CategoryModel
 import com.natiqhaciyef.coffeshop.data.model.CoffeeModel
 import com.natiqhaciyef.coffeshop.databinding.FragmentHomeBinding
@@ -24,7 +23,7 @@ import com.natiqhaciyef.coffeshop.ui.adapter.behavior.CategoryClickListener
 import com.natiqhaciyef.coffeshop.ui.adapter.behavior.CoffeeAdapterClickListener
 import com.natiqhaciyef.coffeshop.ui.viewmodel.HomeViewModel
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.android.synthetic.main.fragment_home.view.*
+import kotlinx.android.synthetic.main.activity_main.*
 
 @AndroidEntryPoint
 class HomeFragment : Fragment() {
@@ -48,6 +47,7 @@ class HomeFragment : Fragment() {
         setup()
         setupCategories()
         observeLiveData()
+        requireActivity().bottomNavigationView.visibility = View.VISIBLE
 
         binding.searchBar.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {

@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.viewModels
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -12,11 +13,13 @@ import com.bumptech.glide.Glide
 import com.natiqhaciyef.coffeshop.R
 import com.natiqhaciyef.coffeshop.data.model.CoffeeModel
 import com.natiqhaciyef.coffeshop.data.model.SizeModel
-import com.natiqhaciyef.coffeshop.data.model.Sizes
+import com.natiqhaciyef.coffeshop.data.based_datas.Sizes
 import com.natiqhaciyef.coffeshop.databinding.FragmentDetailsBinding
 import com.natiqhaciyef.coffeshop.ui.adapter.DetailsSizeAdapter
 import com.natiqhaciyef.coffeshop.ui.adapter.behavior.SizeClickListener
+import com.natiqhaciyef.coffeshop.ui.viewmodel.DetailsViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.android.synthetic.main.activity_main.*
 
 @AndroidEntryPoint
 class DetailsFragment : Fragment() {
@@ -24,7 +27,9 @@ class DetailsFragment : Fragment() {
     private lateinit var sizeAdapter: DetailsSizeAdapter
     private var price = ""
     private var countedPrice = 0.0
+    private var count = 1
     private var isLiked = false
+    private val viewModel: DetailsViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -42,29 +47,90 @@ class DetailsFragment : Fragment() {
         setup(coffee)
         ratingSetup(coffee.rating)
         setupSizes(countedPrice)
+        requireActivity().bottomNavigationView.visibility = View.GONE
 
         binding.goBack.setOnClickListener {
             Navigation.findNavController(it).navigate(R.id.homeFragment)
         }
 
         binding.addToFavourites.setOnClickListener {
-            if (isLiked)
+            if (isLiked) {
                 binding.addToFavourites.setImageResource(R.drawable.filled_like_icon)
-            else
+                viewModel.insertCoffee(coffee)
+            } else {
                 binding.addToFavourites.setImageResource(R.drawable.unfilled_like_icon)
-
+                viewModel.deleteCoffee(coffee)
+            }
             isLiked = !isLiked
+        }
+
+        binding.countOfOrders.text = "$count"
+
+        binding.plusButton.setOnClickListener {
+            count += 1
+            binding.countOfOrders.text = "$count"
+            priceCalculation(coffee.price)
+            refleshSize()
+        }
+
+        binding.minusButton.setOnClickListener {
+            if (count > 1)
+                count -= 1
+            binding.countOfOrders.text = "$count"
+            priceCalculation(coffee.price)
+            refleshSize()
         }
     }
 
     private fun setup(coffee: CoffeeModel) {
         binding.detailsCoffeeNameText.text = coffee.name
         binding.detailsCoffeeDetailsText.text = coffee.detail
-        price = "%.2f".format(coffee.price)
-        binding.detailsCoffeePriceText.text = "Total price $price $"
         Glide.with(requireContext()).load(coffee.image).into(binding.detailsCoffeeImageView)
+        priceCalculation(coffee.price)
+    }
 
-        countedPrice = coffee.price
+    private fun priceCalculation(coffeePrice: Double) {
+        countedPrice = coffeePrice * count
+        setupSizes(countedPrice)
+        price = "%.2f".format(countedPrice)
+        binding.detailsCoffeePriceText.text = "Total price $price $"
+    }
+
+    private fun refleshSize() {
+        for (element in Sizes.list) {
+            element.isChecked = element.name.lowercase() == "small"
+        }
+    }
+
+    fun setupSizes(coffeePrice: Double) {
+        sizeAdapter = DetailsSizeAdapter(requireContext(), Sizes.list)
+        binding.sizeRecyclerView.adapter = sizeAdapter
+        binding.sizeRecyclerView.layoutManager =
+            LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+        sizeAdapter.onClick(object : SizeClickListener {
+            override fun setOnSizeClickListener(sizeModel: SizeModel) {
+                for (element in Sizes.list) {
+                    element.isChecked = element.name == sizeModel.name
+                    if (sizeModel.name == "Small" && sizeModel.isChecked) {
+                        priceCalculation(price.toDouble())
+                        price = "${"%.2f".format(coffeePrice)}"
+                        binding.detailsCoffeePriceText.text =
+                            "Total price $price $"
+                    } else if (sizeModel.name == "Medium" && sizeModel.isChecked) {
+                        priceCalculation(price.toDouble())
+                        price = "${"%.2f".format(coffeePrice * 1.4)}"
+                        binding.detailsCoffeePriceText.text =
+                            "Total price $price $"
+                    } else if (sizeModel.name == "Large" && sizeModel.isChecked) {
+                        priceCalculation(price.toDouble())
+                        price = "${"%.2f".format(coffeePrice * 1.8)}"
+                        binding.detailsCoffeePriceText.text =
+                            "Total price $price $"
+                    }
+                }
+                setupSizes(coffeePrice)
+            }
+        })
     }
 
     private fun ratingSetup(rating: Double) {
@@ -123,31 +189,4 @@ class DetailsFragment : Fragment() {
         }
     }
 
-    fun setupSizes(coffeePrice: Double) {
-        sizeAdapter = DetailsSizeAdapter(requireContext(), Sizes.list)
-        binding.sizeRecyclerView.adapter = sizeAdapter
-        binding.sizeRecyclerView.layoutManager =
-            LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
-        sizeAdapter.onClick(object : SizeClickListener {
-            override fun setOnSizeClickListener(sizeModel: SizeModel) {
-                for (element in Sizes.list) {
-                    element.isChecked = element.name == sizeModel.name
-                    if (sizeModel.name == "Small" && sizeModel.isChecked) {
-                        price = "${"%.2f".format(coffeePrice)}"
-                        binding.detailsCoffeePriceText.text =
-                            "Total price $price $"
-                    } else if (sizeModel.name == "Medium" && sizeModel.isChecked) {
-                        price = "${"%.2f".format(coffeePrice * 1.4)}"
-                        binding.detailsCoffeePriceText.text =
-                            "Total price $price $"
-                    } else if (sizeModel.name == "Large" && sizeModel.isChecked) {
-                        price = "${"%.2f".format(coffeePrice * 1.8)}"
-                        binding.detailsCoffeePriceText.text =
-                            "Total price $price $"
-                    }
-                }
-                setupSizes(coffeePrice)
-            }
-        })
-    }
 }

@@ -1,4 +1,6 @@
-package com.natiqhaciyef.coffeshop.data.model
+package com.natiqhaciyef.coffeshop.data.based_datas
+
+import com.natiqhaciyef.coffeshop.data.model.SizeModel
 
 object Sizes {
     val list = mutableListOf(
