@@ -17,6 +17,7 @@
     <string name="login_text">Login</string>
     <string name="location_text">Location</string>
     <string name="add_to_cart_text">Add to cart</string>
+    <string name="empty_text">Empty...</string>
 
 
 </resources>

@@ -9,7 +9,7 @@ import com.natiqhaciyef.coffeshop.data.model.CoffeeModel
 import com.natiqhaciyef.coffeshop.databinding.RecyclerCoffeeRowBinding
 import com.natiqhaciyef.coffeshop.ui.adapter.behavior.CoffeeAdapterClickListener
 
-class CoffeeAdapter(val list: List<CoffeeModel>, val  mContext: Context):
+class CoffeeAdapter(var list: List<CoffeeModel>, val  mContext: Context):
     RecyclerView.Adapter<CoffeeAdapter.CoffeeHolder>() {
 
     private var listener: CoffeeAdapterClickListener? = null
@@ -38,5 +38,10 @@ class CoffeeAdapter(val list: List<CoffeeModel>, val  mContext: Context):
 
     fun onClick(listener: CoffeeAdapterClickListener){
         this.listener = listener
+    }
+
+    fun filter(list: MutableList<CoffeeModel>){
+        this.list = list
+        notifyDataSetChanged()
     }
 }

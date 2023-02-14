@@ -73,18 +73,20 @@ class HomeFragment : Fragment() {
                 for (element in Categories.list) {
                     element.isChecked = element.name == category.name
                 }
+                filterByCategory(category.name)
                 setupCategories()
             }
         })
     }
 
-    fun setup() {
+    private fun setup() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
             binding.searchBar.queryHint =
                 Html.fromHtml(getString(R.string.search_view_hint), Html.FROM_HTML_MODE_COMPACT)
         } else {
             binding.searchBar.queryHint = Html.fromHtml(getString(R.string.search_view_hint))
         }
+        binding.emptyText.visibility = View.GONE
     }
 
     private fun observeLiveData() {
@@ -114,5 +116,16 @@ class HomeFragment : Fragment() {
                 findNavController().navigate(action)
             }
         })
+    }
+
+    fun filterByCategory(category: String){
+        val list = viewModel.categoryFilter(category, coffeeList)
+        if (list.isNotEmpty()){
+            coffeeAdapter.filter(list)
+            binding.emptyText.visibility = View.GONE
+        } else {
+            coffeeAdapter.filter(list)
+            binding.emptyText.visibility = View.VISIBLE
+        }
     }
 }

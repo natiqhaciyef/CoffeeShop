@@ -101,6 +101,22 @@
             app:lottie_loop="true"
             app:lottie_rawRes="@raw/loading_coffee_beans_animation" />
 
+        <TextView
+            android:id="@+id/emptyText"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:layout_marginTop="200dp"
+            android:foregroundGravity="center"
+            android:visibility="visible"
+            android:text="@string/empty_text"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:gravity="center"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/view"
+            />
 
         <ImageView
             android:id="@+id/locationIcon"

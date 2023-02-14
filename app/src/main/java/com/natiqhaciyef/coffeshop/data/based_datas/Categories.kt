@@ -4,7 +4,7 @@ import com.natiqhaciyef.coffeshop.data.model.CategoryModel
 
 object Categories {
     val list = mutableListOf(
-        CategoryModel("Premium",false),
+        CategoryModel("All",false),
         CategoryModel("Hot Drinks", true),
         CategoryModel("Ice Drinks", false),
         CategoryModel("Bakery",false),

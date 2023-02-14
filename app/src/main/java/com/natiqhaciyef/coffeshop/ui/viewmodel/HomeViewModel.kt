@@ -66,4 +66,35 @@ class HomeViewModel @Inject constructor() : ViewModel() {
             }
         }
     }
+
+    fun categoryFilter(category: String, list: MutableList<CoffeeModel>): MutableList<CoffeeModel> {
+        var customList = mutableListOf<CoffeeModel>()
+        if (category.lowercase() != "all" && category.isNotEmpty() && category.lowercase() != "" && category.lowercase() != "bütün") {
+            if (category.lowercase() == "hot drinks" || category.lowercase() == "isti içkilər") {
+                for (element in list) {
+                    if (element.category.lowercase() == "hot drinks")
+                        customList.add(element)
+                }
+            } else if (category.lowercase() == "ice drinks" || category.lowercase() == "soyuq içkilər") {
+                for (element in list) {
+                    if (element.category.lowercase() == "ice drinks")
+                        customList.add(element)
+                }
+            } else if (category.lowercase() == "bakery" || category.lowercase() == "şirniyyatlar") {
+                for (element in list) {
+                    if (element.category.lowercase() == "bakery")
+                        customList.add(element)
+                }
+            } else if (category.lowercase() == "desert" || category.lowercase() == "desertlər") {
+                for (element in list) {
+                    if (element.category.lowercase() == "desert")
+                        customList.add(element)
+                }
+            }
+        } else {
+            customList = list
+        }
+
+        return customList
+    }
 }
