@@ -25,7 +25,6 @@ import kotlinx.android.synthetic.main.activity_main.*
 class DetailsFragment : Fragment() {
     private lateinit var binding: FragmentDetailsBinding
     private lateinit var sizeAdapter: DetailsSizeAdapter
-    private var price = ""
     private var countedPrice = 0.0
     private var count = 1
     private var isLiked = true
@@ -92,8 +91,8 @@ class DetailsFragment : Fragment() {
     private fun priceCalculation(coffeePrice: Double) {
         countedPrice = coffeePrice * count
         setupSizes(countedPrice)
-        price = "%.2f".format(countedPrice)
-        binding.detailsCoffeePriceText.text = "Total price $price $"
+//        price = countedPrice.toString()
+        binding.detailsCoffeePriceText.text = "Total price ${"%.2f".format(countedPrice)} $"
     }
 
     fun setupSizes(coffeePrice: Double) {
@@ -106,20 +105,20 @@ class DetailsFragment : Fragment() {
                 for (element in Sizes.list) {
                     element.isChecked = element.name == sizeModel.name
                     if (sizeModel.name == "Small" && sizeModel.isChecked) {
-                        priceCalculation(price.toDouble())
-                        price = "${"%.2f".format(coffeePrice)}"
+                        priceCalculation(countedPrice)
+                        countedPrice = coffeePrice
                         binding.detailsCoffeePriceText.text =
-                            "Total price $price $"
+                            "Total price ${"%.2f".format(coffeePrice)} $"
                     } else if (sizeModel.name == "Medium" && sizeModel.isChecked) {
-                        priceCalculation(price.toDouble())
-                        price = "${"%.2f".format(coffeePrice * 1.4)}"
+                        priceCalculation(countedPrice)
+                        countedPrice = coffeePrice * 1.4
                         binding.detailsCoffeePriceText.text =
-                            "Total price $price $"
+                            "Total price ${"%.2f".format(coffeePrice  * 1.4)} $"
                     } else if (sizeModel.name == "Large" && sizeModel.isChecked) {
-                        priceCalculation(price.toDouble())
-                        price = "${"%.2f".format(coffeePrice * 1.8)}"
+                        priceCalculation(countedPrice)
+                        countedPrice = coffeePrice * 1.8
                         binding.detailsCoffeePriceText.text =
-                            "Total price $price $"
+                            "Total price ${"%.2f".format(coffeePrice  * 1.8)} $"
                     }
                 }
                 setupSizes(coffeePrice)
