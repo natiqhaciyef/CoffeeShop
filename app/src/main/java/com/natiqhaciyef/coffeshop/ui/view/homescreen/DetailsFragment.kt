@@ -91,7 +91,6 @@ class DetailsFragment : Fragment() {
     private fun priceCalculation(coffeePrice: Double) {
         countedPrice = coffeePrice * count
         setupSizes(countedPrice)
-//        price = countedPrice.toString()
         binding.detailsCoffeePriceText.text = "Total price ${"%.2f".format(countedPrice)} $"
     }
 

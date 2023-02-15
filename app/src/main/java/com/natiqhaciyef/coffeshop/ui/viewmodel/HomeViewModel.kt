@@ -36,7 +36,6 @@ class HomeViewModel @Inject constructor() : ViewModel() {
                         val docs = value.documents
                         posts.clear()
                         for (doc in docs){
-                            val id = doc.get("id").toString().toInt()
                             val name = doc.get("name") as String
                             val detail = doc.get("detail") as String
                             val image = doc.get("image") as String
@@ -46,7 +45,7 @@ class HomeViewModel @Inject constructor() : ViewModel() {
                             val category = doc.get("category") as String
 
                             val coffee = CoffeeModel(
-                                id = id,
+                                id = 0,
                                 name = name,
                                 detail = detail,
                                 image = image,
@@ -75,9 +74,9 @@ class HomeViewModel @Inject constructor() : ViewModel() {
                     if (element.category.lowercase() == "hot drinks")
                         customList.add(element)
                 }
-            } else if (category.lowercase() == "ice drinks" || category.lowercase() == "soyuq içkilər") {
+            } else if (category.lowercase() == "cold drinks" || category.lowercase() == "soyuq içkilər") {
                 for (element in list) {
-                    if (element.category.lowercase() == "ice drinks")
+                    if (element.category.lowercase() == "cold drinks")
                         customList.add(element)
                 }
             } else if (category.lowercase() == "bakery" || category.lowercase() == "şirniyyatlar") {

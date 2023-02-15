@@ -141,7 +141,4 @@ class HomeFragment : Fragment() {
         }else
             Toast.makeText(requireContext(), "Searched drink not found", Toast.LENGTH_SHORT).show()
     }
-
-
-
 }
