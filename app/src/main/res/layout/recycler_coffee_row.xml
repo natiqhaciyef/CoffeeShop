@@ -32,7 +32,7 @@
             android:layout_marginTop="10dp"
             android:fontFamily="@font/courgette"
             android:gravity="start|center_vertical"
-            android:text="Cappuccino"
+            android:text="@string/cappuccino_text"
             android:textColor="@color/extra_light_black_1"
             android:textSize="19sp"
             android:textStyle="bold"

@@ -14,7 +14,7 @@
         android:layout_height="wrap_content"
         android:padding="10dp"
         android:fontFamily="@font/sanchez_italic"
-        android:text="Favourites"
+        android:text="@string/favourites_text"
         android:textColor="@color/black"
         android:textSize="22sp"
         android:textFontWeight="950"

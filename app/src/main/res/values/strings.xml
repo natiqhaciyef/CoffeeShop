@@ -18,6 +18,9 @@
     <string name="location_text">Location</string>
     <string name="add_to_cart_text">Add to cart</string>
     <string name="empty_text">  Empty...</string>
+    <string name="favourites_text">Favourites</string>
+    <string name="orders_text">Orders</string>
+    <string name="cappuccino_text">Cappuccino</string>
 
 
 </resources>

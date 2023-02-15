@@ -14,12 +14,15 @@ import com.natiqhaciyef.coffeshop.R
 import com.natiqhaciyef.coffeshop.data.model.CoffeeModel
 import com.natiqhaciyef.coffeshop.data.model.SizeModel
 import com.natiqhaciyef.coffeshop.data.based_datas.Sizes
+import com.natiqhaciyef.coffeshop.data.model.CartCoffeeModel
 import com.natiqhaciyef.coffeshop.databinding.FragmentDetailsBinding
 import com.natiqhaciyef.coffeshop.ui.adapter.DetailsSizeAdapter
 import com.natiqhaciyef.coffeshop.ui.adapter.behavior.SizeClickListener
 import com.natiqhaciyef.coffeshop.ui.viewmodel.DetailsViewModel
+import com.natiqhaciyef.coffeshop.util.calendarFormatter
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.activity_main.*
+import java.util.*
 
 @AndroidEntryPoint
 class DetailsFragment : Fragment() {
@@ -27,6 +30,7 @@ class DetailsFragment : Fragment() {
     private lateinit var sizeAdapter: DetailsSizeAdapter
     private var countedPrice = 0.0
     private var count = 1
+    private var selectedSize = "Small"
     private var isLiked = true
     private val viewModel: DetailsViewModel by viewModels()
 
@@ -79,6 +83,23 @@ class DetailsFragment : Fragment() {
             priceCalculation(coffee.price)
             viewModel.refleshSize()
         }
+
+        binding.addToCartButton.setOnClickListener {
+            viewModel.insertCartCoffee(CartCoffeeModel(
+                id = 0,
+                name = coffee.name,
+                detail = coffee.detail,
+                image = coffee.image,
+                price = coffee.price,
+                size = selectedSize,
+                rating = coffee.rating,
+                category = coffee.category,
+                totalPrice = countedPrice,
+                count = count,
+                date = calendarFormatter(Calendar.getInstance())
+            ))
+            Navigation.findNavController(it).navigate(R.id.cartFragment)
+        }
     }
 
     private fun setup(coffee: CoffeeModel) {
@@ -104,16 +125,19 @@ class DetailsFragment : Fragment() {
                 for (element in Sizes.list) {
                     element.isChecked = element.name == sizeModel.name
                     if (sizeModel.name == "Small" && sizeModel.isChecked) {
+                        selectedSize = "Small"
                         priceCalculation(countedPrice)
                         countedPrice = coffeePrice
                         binding.detailsCoffeePriceText.text =
                             "Total price ${"%.2f".format(coffeePrice)} $"
                     } else if (sizeModel.name == "Medium" && sizeModel.isChecked) {
+                        selectedSize = "Medium"
                         priceCalculation(countedPrice)
                         countedPrice = coffeePrice * 1.4
                         binding.detailsCoffeePriceText.text =
                             "Total price ${"%.2f".format(coffeePrice  * 1.4)} $"
                     } else if (sizeModel.name == "Large" && sizeModel.isChecked) {
+                        selectedSize = "Large"
                         priceCalculation(countedPrice)
                         countedPrice = coffeePrice * 1.8
                         binding.detailsCoffeePriceText.text =
