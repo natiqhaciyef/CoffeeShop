@@ -5,7 +5,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.viewModels
+import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -38,10 +40,18 @@ class CartFragment : Fragment() {
         binding.emptyText.visibility = View.GONE
         observerLiveData()
         ItemTouchHelper(swipeCallBack).attachToRecyclerView(binding.recyclerCartView)
+
+        val callback = object: OnBackPressedCallback(true){
+            override fun handleOnBackPressed() {
+                findNavController().navigate(R.id.homeFragment)
+            }
+        }
+
+        requireActivity().onBackPressedDispatcher.addCallback(callback)
     }
 
     private fun observerLiveData() {
-        viewModel.cartLiveData.observe(viewLifecycleOwner) {
+        viewModel.cartModelLiveData.observe(viewLifecycleOwner) {
             it.data?.let {
                 if (it.isNotEmpty())
                     list = it.toMutableList()

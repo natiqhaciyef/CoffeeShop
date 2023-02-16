@@ -18,6 +18,7 @@ import com.natiqhaciyef.coffeshop.data.model.CartCoffeeModel
 import com.natiqhaciyef.coffeshop.databinding.FragmentDetailsBinding
 import com.natiqhaciyef.coffeshop.ui.adapter.DetailsSizeAdapter
 import com.natiqhaciyef.coffeshop.ui.adapter.behavior.SizeClickListener
+import com.natiqhaciyef.coffeshop.ui.viewmodel.CartViewModel
 import com.natiqhaciyef.coffeshop.ui.viewmodel.DetailsViewModel
 import com.natiqhaciyef.coffeshop.util.calendarFormatter
 import dagger.hilt.android.AndroidEntryPoint
@@ -32,6 +33,8 @@ class DetailsFragment : Fragment() {
     private var count = 1
     private var selectedSize = "Small"
     private var isLiked = true
+    private var observedCartList = mutableListOf<CartCoffeeModel>()
+    private val cartViewModel: CartViewModel by viewModels()
     private val viewModel: DetailsViewModel by viewModels()
 
     override fun onCreateView(
@@ -84,21 +87,43 @@ class DetailsFragment : Fragment() {
             viewModel.refleshSize()
         }
 
-        binding.addToCartButton.setOnClickListener {
-            viewModel.insertCartCoffee(CartCoffeeModel(
-                id = 0,
-                name = coffee.name,
-                detail = coffee.detail,
-                image = coffee.image,
-                price = coffee.price,
-                size = selectedSize,
-                rating = coffee.rating,
-                category = coffee.category,
-                totalPrice = countedPrice,
-                count = count,
-                date = calendarFormatter(Calendar.getInstance())
-            ))
-            Navigation.findNavController(it).navigate(R.id.cartFragment)
+        cartViewModel.getAllCartCoffee()
+        cartViewModel.cartModelLiveData.observe(viewLifecycleOwner) {
+            it.data?.let {
+                observedCartList = it.toMutableList()
+                binding.addToCartButton.setOnClickListener {
+                    val coffeeModel = CartCoffeeModel(
+                        id = 0,
+                        name = coffee.name,
+                        detail = coffee.detail,
+                        image = coffee.image,
+                        price = coffee.price,
+                        size = selectedSize,
+                        rating = coffee.rating,
+                        category = coffee.category,
+                        totalPrice = countedPrice,
+                        count = count,
+                        date = calendarFormatter(Calendar.getInstance())
+                    )
+
+                    val deletedElements = mutableListOf<CartCoffeeModel>()
+                    for (element in observedCartList) {
+                        if (element.name == coffeeModel.name) {
+                            coffeeModel.totalPrice += element.totalPrice
+                            coffeeModel.count += element.count
+                            deletedElements.add(element)
+                        }
+                    }
+
+                    viewModel.insertCartCoffee(coffeeModel)
+
+                    for (element in deletedElements){
+                        cartViewModel.deleteCartCoffee(element)
+                    }
+
+                    Navigation.findNavController(it).navigate(R.id.cartFragment)
+                }
+            }
         }
     }
 
@@ -135,13 +160,13 @@ class DetailsFragment : Fragment() {
                         priceCalculation(countedPrice)
                         countedPrice = coffeePrice * 1.4
                         binding.detailsCoffeePriceText.text =
-                            "Total price ${"%.2f".format(coffeePrice  * 1.4)} $"
+                            "Total price ${"%.2f".format(coffeePrice * 1.4)} $"
                     } else if (sizeModel.name == "Large" && sizeModel.isChecked) {
                         selectedSize = "Large"
                         priceCalculation(countedPrice)
                         countedPrice = coffeePrice * 1.8
                         binding.detailsCoffeePriceText.text =
-                            "Total price ${"%.2f".format(coffeePrice  * 1.8)} $"
+                            "Total price ${"%.2f".format(coffeePrice * 1.8)} $"
                     }
                 }
                 setupSizes(coffeePrice)
