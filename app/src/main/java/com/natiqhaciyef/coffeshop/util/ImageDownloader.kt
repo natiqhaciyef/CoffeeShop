@@ -16,7 +16,7 @@ import android.graphics.drawable.Drawable as Drawable1
 fun ImageView.downloadFromUrl(url: String?, circularProgressDrawable: CircularProgressDrawable){
     val option = RequestOptions()
         .placeholder(circularProgressDrawable)
-        .error(R.mipmap.ic_launcher)
+        .error(R.mipmap.app_icon)
 
     Glide.with(context)
         .setDefaultRequestOptions(option)
@@ -27,7 +27,7 @@ fun ImageView.downloadFromUrl(url: String?, circularProgressDrawable: CircularPr
 fun ImageView.downloadAndRotateFromUrl(url: String?, circularProgressDrawable: CircularProgressDrawable){
     val option = RequestOptions()
         .placeholder(circularProgressDrawable)
-        .error(R.mipmap.ic_launcher_round)
+        .error(R.mipmap.app_icon)
 
     Glide.with(context)
         .setDefaultRequestOptions(option)
