@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="100dp"
+    android:layout_height="140dp"
+    android:layout_margin="5dp"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -10,8 +11,9 @@
 
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/notificationCoffeeImageView"
-            android:layout_width="75dp"
-            android:layout_height="75dp"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginStart="10dp"
             android:scaleType="centerCrop"
             android:src="@drawable/cappuccino"
             app:shapeAppearanceOverlay="@style/RoundedAllCornerImage"
@@ -43,9 +45,9 @@
             android:layout_marginHorizontal="10dp"
             android:layout_marginTop="10dp"
             android:gravity="start"
-            android:text="Total Price: 35$ "
+            android:text="  "
             android:textColor="@color/extra_light_black_1"
-            android:textSize="16sp"
+            android:textSize="15sp"
             app:layout_constraintVertical_bias="0.1"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

@@ -11,16 +11,18 @@ import android.view.ViewGroup
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.viewModels
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.natiqhaciyef.coffeshop.R
 import com.natiqhaciyef.coffeshop.data.model.NotificationModel
 import com.natiqhaciyef.coffeshop.databinding.FragmentNotificationBinding
+import com.natiqhaciyef.coffeshop.ui.adapter.NotificationAdapter
 import com.natiqhaciyef.coffeshop.ui.viewmodel.NotificationViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class NotificationFragment : Fragment() {
     private lateinit var binding: FragmentNotificationBinding
-//    private lateinit var adapter
+    private lateinit var adapter: NotificationAdapter
     private var list = mutableListOf<NotificationModel>()
     private val viewModel: NotificationViewModel by viewModels()
 
@@ -34,10 +36,13 @@ class NotificationFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel.notificationLiveData.observe(viewLifecycleOwner){
+        viewModel.notificationLiveData.observe(viewLifecycleOwner) {
             it.data?.let {
                 list = it.toMutableList()
-
+                adapter = NotificationAdapter(list, requireContext())
+                binding.recyclerNotificationView.adapter = adapter
+                binding.recyclerNotificationView.layoutManager =
+                    LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
             }
         }
     }
