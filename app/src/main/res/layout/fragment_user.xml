@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/UserFragment"
+    android:background="@color/white"
     >
 
     <View
@@ -97,7 +98,8 @@
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/userImage" />
+        app:layout_constraintTop_toBottomOf="@id/userImage"
+        tools:ignore="TouchTargetSizeCheck" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/signOutButton"
@@ -116,6 +118,7 @@
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/resetPasswordButton"
-        app:layout_constraintVertical_bias="0.019" />
+        app:layout_constraintVertical_bias="0.019"
+        tools:ignore="TouchTargetSizeCheck,TouchTargetSizeCheck" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

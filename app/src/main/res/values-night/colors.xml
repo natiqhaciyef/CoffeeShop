@@ -38,14 +38,14 @@
     <color name="light_black">#1b1b1b</color>
     <color name="extra_light_black_1">#2a2a2a</color>
     <color name="extra_light_black_2">#313131</color>
-    <color name="gray">#9aa7a8</color>
+    <color name="gray">#646767</color>
     <color name="gray2">#5E5E5E</color>
     <color name="dark_cool_green">#2f4b4e</color>
     <color name="brown">#c67c4e</color>
     <color name="light_brown">#FFC49E</color>
     <color name="light_brown2">#d3b8ae</color>
     <color name="extra_light_brown">#FAF2ED</color>
-    <color name="extra_light_brown2">#FAF2ED</color>
+    <color name="extra_light_brown2">#F3CEB7</color>
     <color name="dark_white">#D5D5D5</color>
 
     <color name="black">#000000</color>

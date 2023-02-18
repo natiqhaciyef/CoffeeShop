@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="preloaded_fonts" translatable="false">
+        <item>@font/courgette</item>
+        <item>@font/sanchez</item>
+        <item>@font/sanchez_italic</item>
+        <item>@font/satisfy</item>
+        <item>@font/spectral_bold</item>
+    </array>
+</resources>

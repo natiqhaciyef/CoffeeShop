@@ -27,10 +27,6 @@
     <string name="email_text">Email</string>
     <string name="password_text">Password</string>
     <string name="sign_out_text">Sign out</string>
-    <string name="cart_text">Cart</string>
-    <string name="notification_text">Notification</string>
-    <string name="saved_text">Saved</string>
-    <string name="home_text">Home</string>
 
 
 </resources>
