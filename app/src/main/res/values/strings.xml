@@ -21,6 +21,7 @@
     <string name="favourites_text">Favourites</string>
     <string name="orders_text">Orders</string>
     <string name="cappuccino_text">Cappuccino</string>
+    <string name="notifications_text">Notifications</string>
 
 
 </resources>

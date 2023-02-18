@@ -18,6 +18,7 @@ import com.natiqhaciyef.coffeshop.databinding.FragmentNotificationBinding
 import com.natiqhaciyef.coffeshop.ui.adapter.NotificationAdapter
 import com.natiqhaciyef.coffeshop.ui.viewmodel.NotificationViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.android.synthetic.main.fragment_notification.view.*
 
 @AndroidEntryPoint
 class NotificationFragment : Fragment() {
@@ -36,14 +37,31 @@ class NotificationFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding.emptyText.visibility = View.GONE
+        observeLiveData()
+    }
+
+    private fun observeLiveData(){
         viewModel.notificationLiveData.observe(viewLifecycleOwner) {
             it.data?.let {
                 list = it.toMutableList()
+                if(list.isEmpty())
+                    binding.emptyText.visibility = View.VISIBLE
+                else
+                    binding.emptyText.visibility = View.GONE
+
                 adapter = NotificationAdapter(list, requireContext())
                 binding.recyclerNotificationView.adapter = adapter
                 binding.recyclerNotificationView.layoutManager =
                     LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
             }
+        }
+
+        viewModel.isLoading.observe(viewLifecycleOwner){
+            if (it)
+                binding.loadingView.visibility = View.VISIBLE
+            else
+                binding.loadingView.visibility = View.GONE
         }
     }
 }
