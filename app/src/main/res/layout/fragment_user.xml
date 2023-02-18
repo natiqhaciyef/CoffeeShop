@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/UserFragment"
+    >
+
+    <View
+        android:id="@+id/view"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:background="@color/light_black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/userImage"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_marginStart="30dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/person_icon"
+        app:layout_constraintBottom_toBottomOf="@id/view"
+        app:layout_constraintStart_toStartOf="@id/view"
+        app:layout_constraintTop_toTopOf="@+id/view" />
+
+    <TextView
+        android:id="@+id/userEmailLabelText"
+        android:layout_width="0dp"
+        android:layout_height="25dp"
+        android:layout_marginStart="10dp"
+        android:gravity="center_vertical"
+        android:text="@string/email_text"
+        android:textColor="@color/dark_white"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/userImage"
+        app:layout_constraintTop_toTopOf="@id/userImage" />
+
+    <TextView
+        android:id="@+id/userEmailText"
+        android:layout_width="0dp"
+        android:layout_height="25dp"
+        android:layout_marginStart="10dp"
+        android:gravity="center_vertical"
+        android:text="natiq00h2272@gmail.com"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/userImage"
+        app:layout_constraintTop_toBottomOf="@id/userEmailLabelText" />
+
+    <TextView
+        android:id="@+id/userPasswordLabelText"
+        android:layout_width="0dp"
+        android:layout_height="25dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:gravity="center_vertical"
+        android:text="@string/password_text"
+        android:textColor="@color/dark_white"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/userImage"
+        app:layout_constraintTop_toBottomOf="@id/userEmailText" />
+
+    <TextView
+        android:id="@+id/userPasswordText"
+        android:layout_width="0dp"
+        android:layout_height="25dp"
+        android:layout_marginStart="10dp"
+        android:gravity="center_vertical"
+        android:text="*********"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/userImage"
+        app:layout_constraintTop_toBottomOf="@id/userPasswordLabelText" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/resetPasswordButton"
+        android:layout_width="150dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/custom_button_background"
+        android:text="@string/reset_password_text"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/userImage" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/signOutButton"
+        android:layout_width="150dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/custom_button_background"
+        android:text="@string/sign_out_text"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/resetPasswordButton"
+        app:layout_constraintVertical_bias="0.019" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

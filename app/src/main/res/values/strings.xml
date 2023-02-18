@@ -22,6 +22,11 @@
     <string name="orders_text">Orders</string>
     <string name="cappuccino_text">Cappuccino</string>
     <string name="notifications_text">Notifications</string>
+    <string name="settings_text">Settings</string>
+    <string name="reset_password_text">Reset Password</string>
+    <string name="email_text">Email</string>
+    <string name="password_text">Password</string>
+    <string name="sign_out_text">Sign out</string>
 
 
 </resources>

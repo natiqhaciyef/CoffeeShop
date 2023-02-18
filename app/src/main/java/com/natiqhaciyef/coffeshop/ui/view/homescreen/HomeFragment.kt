@@ -1,5 +1,6 @@
 package com.natiqhaciyef.coffeshop.ui.view.homescreen
 
+import android.app.AlertDialog
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
@@ -15,11 +16,17 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
+import com.google.android.material.snackbar.Snackbar
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 import com.natiqhaciyef.coffeshop.R
 import com.natiqhaciyef.coffeshop.data.based_datas.Categories
 import com.natiqhaciyef.coffeshop.data.model.CategoryModel
 import com.natiqhaciyef.coffeshop.data.model.CoffeeModel
 import com.natiqhaciyef.coffeshop.databinding.FragmentHomeBinding
+import com.natiqhaciyef.coffeshop.databinding.FragmentUserBinding
+import com.natiqhaciyef.coffeshop.ui.RegisterActivity
 import com.natiqhaciyef.coffeshop.ui.adapter.CategoryAdapter
 import com.natiqhaciyef.coffeshop.ui.adapter.CoffeeAdapter
 import com.natiqhaciyef.coffeshop.ui.adapter.behavior.CategoryClickListener
@@ -27,10 +34,12 @@ import com.natiqhaciyef.coffeshop.ui.adapter.behavior.CoffeeAdapterClickListener
 import com.natiqhaciyef.coffeshop.ui.viewmodel.HomeViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlin.math.sign
 
 @AndroidEntryPoint
 class HomeFragment : Fragment() {
     private lateinit var binding: FragmentHomeBinding
+    private lateinit var auth: FirebaseAuth
     private lateinit var categoryAdapter: CategoryAdapter
     private lateinit var coffeeAdapter: CoffeeAdapter
     private val categories = Categories.list
@@ -47,6 +56,7 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        auth = Firebase.auth
         setup()
         setupCategories()
         observeLiveData()
@@ -65,6 +75,9 @@ class HomeFragment : Fragment() {
             }
         })
 
+        binding.userProfile.setOnClickListener {
+            userProfile()
+        }
     }
 
     private fun setupCategories() {
@@ -95,7 +108,7 @@ class HomeFragment : Fragment() {
     }
 
     private fun observeLiveData() {
-        viewModel.isLoading.observe(viewLifecycleOwner){
+        viewModel.isLoading.observe(viewLifecycleOwner) {
             if (it == true)
                 binding.loadingView.visibility = View.VISIBLE
             else
@@ -123,9 +136,9 @@ class HomeFragment : Fragment() {
         })
     }
 
-    fun filterByCategory(category: String){
+    fun filterByCategory(category: String) {
         val list = viewModel.categoryFilter(category, coffeeList)
-        if (list.isNotEmpty()){
+        if (list.isNotEmpty()) {
             coffeeAdapter.filter(list)
             binding.emptyText.visibility = View.GONE
         } else {
@@ -134,11 +147,43 @@ class HomeFragment : Fragment() {
         }
     }
 
-    fun filterByName(input: String){
+    fun filterByName(input: String) {
         val list = viewModel.filterByName(input, coffeeList)
-        if (list.isNotEmpty()){
+        if (list.isNotEmpty()) {
             coffeeAdapter.filter(list)
-        }else
+        } else
             Toast.makeText(requireContext(), "Searched drink not found", Toast.LENGTH_SHORT).show()
+    }
+
+    private fun userProfile() {
+        val view = FragmentUserBinding.inflate(layoutInflater)
+        val signOut = view.signOutButton
+        val resetPassword = view.resetPasswordButton
+
+        val customView = AlertDialog.Builder(requireContext())
+            .setView(view.root)
+            .create()
+
+        signOut.setOnClickListener {
+            auth.signOut()
+            val intent = Intent(requireActivity(), RegisterActivity::class.java)
+            requireActivity().startActivity(intent)
+            requireActivity().finish()
+        }
+
+        resetPassword.setOnClickListener {
+            auth.sendPasswordResetEmail(auth.currentUser!!.email!!).addOnSuccessListener {
+                Snackbar.make(requireView(), "Please check your email", Snackbar.LENGTH_SHORT)
+                    .show()
+            }.addOnFailureListener {
+                Snackbar.make(requireView(), "Something went wrong", Snackbar.LENGTH_SHORT).show()
+            }
+        }
+
+        auth.currentUser?.let {
+            view.userEmailText.text = it.email
+        }
+
+        customView.show()
     }
 }
