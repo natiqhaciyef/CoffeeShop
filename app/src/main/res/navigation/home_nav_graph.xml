@@ -37,4 +37,14 @@
             android:name="data"
             app:argType="com.natiqhaciyef.coffeshop.data.model.CoffeeModel" />
     </fragment>
+    <fragment
+        android:id="@+id/paymentFragment"
+        android:name="com.natiqhaciyef.coffeshop.ui.view.homescreen.PaymentFragment"
+        android:label="fragment_payment"
+        tools:layout="@layout/fragment_payment" />
+    <fragment
+        android:id="@+id/paymentDetailsFragment"
+        android:name="com.natiqhaciyef.coffeshop.ui.view.homescreen.PaymentDetailsFragment"
+        android:label="fragment_payment_details"
+        tools:layout="@layout/fragment_payment_details" />
 </navigation>

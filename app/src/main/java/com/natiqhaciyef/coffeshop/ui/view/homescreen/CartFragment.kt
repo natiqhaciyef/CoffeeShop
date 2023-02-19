@@ -47,6 +47,10 @@ class CartFragment : Fragment() {
             }
         }
 
+        binding.submitButton.setOnClickListener {
+            Navigation.findNavController(it).navigate(R.id.paymentFragment)
+        }
+
         requireActivity().onBackPressedDispatcher.addCallback(callback)
     }
 
