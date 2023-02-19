@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.navigation.Navigation
 import com.natiqhaciyef.coffeshop.R
 import com.natiqhaciyef.coffeshop.databinding.FragmentPaymentBinding
+import kotlinx.android.synthetic.main.fragment_payment.*
 
 
 class PaymentFragment : Fragment() {
@@ -23,11 +24,14 @@ class PaymentFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding.continueButton.isEnabled = false
+
         binding.masterCardRadioButton.setOnCheckedChangeListener { view, isChecked ->
             if (isChecked) {
                 selectedPaymentMethod = "MasterCard"
                 binding.visaCardRadioButton.isChecked = false
                 binding.paypalCardRadioButton.isChecked = false
+                binding.continueButton.isEnabled = true
             }
         }
 
@@ -36,6 +40,7 @@ class PaymentFragment : Fragment() {
                 selectedPaymentMethod = "Visa"
                 binding.masterCardRadioButton.isChecked = false
                 binding.paypalCardRadioButton.isChecked = false
+                binding.continueButton.isEnabled = true
             }
         }
 
@@ -44,6 +49,7 @@ class PaymentFragment : Fragment() {
                 selectedPaymentMethod = "Paypal"
                 binding.visaCardRadioButton.isChecked = false
                 binding.masterCardRadioButton.isChecked = false
+                binding.continueButton.isEnabled = true
             }
         }
 
@@ -52,7 +58,8 @@ class PaymentFragment : Fragment() {
         }
 
         binding.continueButton.setOnClickListener {
-
+            val action = PaymentFragmentDirections.actionPaymentFragmentToPaymentDetailsFragment(selectedPaymentMethod)
+            Navigation.findNavController(it).navigate(action)
         }
     }
 }

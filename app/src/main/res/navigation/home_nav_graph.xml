@@ -41,10 +41,18 @@
         android:id="@+id/paymentFragment"
         android:name="com.natiqhaciyef.coffeshop.ui.view.homescreen.PaymentFragment"
         android:label="fragment_payment"
-        tools:layout="@layout/fragment_payment" />
+        tools:layout="@layout/fragment_payment" >
+        <action
+            android:id="@+id/action_paymentFragment_to_paymentDetailsFragment"
+            app:destination="@id/paymentDetailsFragment" />
+    </fragment>
     <fragment
         android:id="@+id/paymentDetailsFragment"
         android:name="com.natiqhaciyef.coffeshop.ui.view.homescreen.PaymentDetailsFragment"
         android:label="fragment_payment_details"
-        tools:layout="@layout/fragment_payment_details" />
+        tools:layout="@layout/fragment_payment_details" >
+        <argument
+            android:name="paymentMethod"
+            app:argType="string" />
+    </fragment>
 </navigation>
