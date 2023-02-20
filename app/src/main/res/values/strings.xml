@@ -36,6 +36,12 @@
     <string name="visa_text">Visa</string>
     <string name="paypal_text">Paypal</string>
     <string name="continue_text">Continue</string>
+    <string name="expiry_date_text">Expiry date</string>
+    <string name="cvv_text">CVV</string>
+    <string name="card_number_text">Card number</string>
+    <string name="enter_card_number_text">enter card number</string>
+    <string name="name_text">Name</string>
+    <string name="enter_name_on_the_card_text">Enter name on the card</string>
 
 
 </resources>
