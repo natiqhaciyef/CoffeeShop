@@ -104,38 +104,41 @@ class DetailsFragment : Fragment() {
             it.data?.let {
                 observedCartList = it.toMutableList()
                 binding.addToCartButton.setOnClickListener {
-                    val coffeeModel = CartCoffeeModel(
-                        id = 0,
-                        name = coffee.name,
-                        detail = coffee.detail,
-                        image = coffee.image,
-                        price = coffee.price,
-                        size = selectedSize,
-                        rating = coffee.rating,
-                        category = coffee.category,
-                        totalPrice = countedPrice,
-                        count = count,
-                        date = calendarFormatter(Calendar.getInstance())
-                    )
-
-                    val deletedElements = mutableListOf<CartCoffeeModel>()
-                    for (element in observedCartList) {
-                        if (element.name == coffeeModel.name) {
-                            coffeeModel.totalPrice += element.totalPrice
-                            coffeeModel.count += element.count
-                            deletedElements.add(element)
-                        }
-                    }
-
-                    viewModel.insertCartCoffee(coffeeModel)
-
-                    for (element in deletedElements) {
-                        cartViewModel.deleteCartCoffee(element)
-                    }
-
+                    cartAction(coffee)
                     Navigation.findNavController(it).navigate(R.id.cartFragment)
                 }
             }
+        }
+    }
+
+    private fun cartAction(coffee: CoffeeModel, ){
+        val coffeeModel = CartCoffeeModel(
+            id = 0,
+            name = coffee.name,
+            detail = coffee.detail,
+            image = coffee.image,
+            price = coffee.price,
+            size = selectedSize,
+            rating = coffee.rating,
+            category = coffee.category,
+            totalPrice = countedPrice,
+            count = count,
+            date = calendarFormatter(Calendar.getInstance())
+        )
+
+        val deletedElements = mutableListOf<CartCoffeeModel>()
+        for (element in observedCartList) {
+            if (element.name == coffeeModel.name) {
+                coffeeModel.totalPrice += element.totalPrice
+                coffeeModel.count += element.count
+                deletedElements.add(element)
+            }
+        }
+
+        viewModel.insertCartCoffee(coffeeModel)
+
+        for (element in deletedElements) {
+            cartViewModel.deleteCartCoffee(element)
         }
     }
 
