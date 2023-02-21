@@ -61,8 +61,20 @@ class DetailsFragment : Fragment() {
 
         binding.addToFavourites.setOnClickListener {
             if (isLiked) {
-                binding.addToFavourites.setImageResource(R.drawable.filled_like_icon)
-                viewModel.insertCoffee(coffee)
+                viewModel.getAllDataFromDB()
+                viewModel.liveData.observe(viewLifecycleOwner) {
+                    binding.addToFavourites.setImageResource(R.drawable.filled_like_icon)
+                    var counter = 0
+                    for (element in it) {
+                        if (element.name == coffee.name) {
+                            counter ++
+                        }
+                    }
+
+                    if (counter == 0)
+                        viewModel.insertCoffee(coffee)
+
+                }
             } else {
                 binding.addToFavourites.setImageResource(R.drawable.unfilled_like_icon)
                 viewModel.deleteCoffee(coffee)
@@ -117,7 +129,7 @@ class DetailsFragment : Fragment() {
 
                     viewModel.insertCartCoffee(coffeeModel)
 
-                    for (element in deletedElements){
+                    for (element in deletedElements) {
                         cartViewModel.deleteCartCoffee(element)
                     }
 

@@ -1,5 +1,6 @@
 package com.natiqhaciyef.coffeshop.ui.viewmodel
 
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.natiqhaciyef.coffeshop.data.based_datas.Sizes
@@ -17,6 +18,11 @@ import javax.inject.Inject
 class DetailsViewModel @Inject constructor(
     val repository: AppRepository
 ) : ViewModel() {
+    val liveData = MutableLiveData<List<CoffeeModel>>()
+
+    fun getAllDataFromDB() = viewModelScope.launch(Dispatchers.Main) {
+        liveData.value = repository.getAllCoffee()
+    }
 
     fun insertCoffee(coffeeModel: CoffeeModel) = viewModelScope.launch(Dispatchers.Main) {
         repository.insertCoffee(coffeeModel)
