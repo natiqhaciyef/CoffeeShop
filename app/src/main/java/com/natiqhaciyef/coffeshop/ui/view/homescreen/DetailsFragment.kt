@@ -64,16 +64,7 @@ class DetailsFragment : Fragment() {
                 viewModel.getAllDataFromDB()
                 viewModel.liveData.observe(viewLifecycleOwner) {
                     binding.addToFavourites.setImageResource(R.drawable.filled_like_icon)
-                    var counter = 0
-                    for (element in it) {
-                        if (element.name == coffee.name) {
-                            counter ++
-                        }
-                    }
-
-                    if (counter == 0)
-                        viewModel.insertCoffee(coffee)
-
+                    favouriteAction(coffee, it)
                 }
             } else {
                 binding.addToFavourites.setImageResource(R.drawable.unfilled_like_icon)
@@ -109,6 +100,18 @@ class DetailsFragment : Fragment() {
                 }
             }
         }
+    }
+
+    private fun favouriteAction(coffee: CoffeeModel, list: List<CoffeeModel>){
+        var counter = 0
+        for (element in list) {
+            if (element.name == coffee.name) {
+                counter ++
+            }
+        }
+
+        if (counter == 0)
+            viewModel.insertCoffee(coffee)
     }
 
     private fun cartAction(coffee: CoffeeModel, ){
