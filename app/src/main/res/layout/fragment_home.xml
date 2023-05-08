@@ -12,7 +12,6 @@
         android:background="@color/extra_light_brown"
         tools:context=".ui.view.homescreen.HomeFragment">
 
-
         <View
             android:id="@+id/view"
             android:layout_width="match_parent"

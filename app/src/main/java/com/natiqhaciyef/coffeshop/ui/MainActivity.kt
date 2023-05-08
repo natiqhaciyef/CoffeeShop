@@ -2,6 +2,7 @@ package com.natiqhaciyef.coffeshop.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import androidx.navigation.findNavController
 import com.natiqhaciyef.coffeshop.R
 import com.natiqhaciyef.coffeshop.databinding.ActivityMainBinding
@@ -38,7 +39,6 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         }
-
     }
 
     private fun navigationFragments(id: Int) {
