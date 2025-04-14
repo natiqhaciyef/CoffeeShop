@@ -60,7 +60,7 @@ class HomeFragment : Fragment() {
         setup()
         setupCategories()
         observeLiveData()
-        requireActivity().bottomNavigationView.visibility = View.VISIBLE
+//        requireActivity().bottomNavigationView.visibility = View.VISIBLE
 
         binding.searchBar.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
@@ -78,6 +78,14 @@ class HomeFragment : Fragment() {
         binding.userProfile.setOnClickListener {
             userProfile()
         }
+    }
+
+    fun filterByName(input: String) {
+        val list = viewModel.filterByName(input, coffeeList)
+        if (list.isNotEmpty()) {
+            coffeeAdapter.filter(list)
+        } else
+            Toast.makeText(requireContext(), "Searched drink not found", Toast.LENGTH_SHORT).show()
     }
 
     private fun setupCategories() {
@@ -147,13 +155,6 @@ class HomeFragment : Fragment() {
         }
     }
 
-    fun filterByName(input: String) {
-        val list = viewModel.filterByName(input, coffeeList)
-        if (list.isNotEmpty()) {
-            coffeeAdapter.filter(list)
-        } else
-            Toast.makeText(requireContext(), "Searched drink not found", Toast.LENGTH_SHORT).show()
-    }
 
     private fun userProfile() {
         val view = FragmentUserBinding.inflate(layoutInflater)
